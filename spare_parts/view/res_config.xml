@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Sale config wizard -->
+		<record id="view_spare_parts_config_settings" model="ir.ui.view">
+			<field name="name">Spare parts settings</field>
+			<field name="model">spare_parts.config.settings</field>
+			<field name="arch" type="xml">
+				<form string="Configure Spare parts" class="oe_form_configuration">
+					<header>
+						<button string="Apply" type="object" name="execute" class="oe_highlight"/>
+						or
+						<button string="Cancel" type="object" name="cancel" class="oe_link"/>
+					</header>
+					<div name="Spare parts config">
+						<separator string="Spare parts integration"/>
+						<group name="Postgres config">
+							<label for="id" string="Spare parts"/>
+							<div name="Postgres">
+								<div>
+									<label for="spare_user"/>
+									<field name="spare_user" class="oe_inline"/>
+								</div>
+								<div>
+									<label for="spare_password"/>
+									<field name="spare_password" password="True" class="oe_inline"/>
+								</div>
+								  <div>
+									<label for="spare_dbname"/>
+									<field name="spare_dbname" class="oe_inline"/>
+								</div>
+								   <div>
+									<label for="spare_host"/>
+									<field name="spare_host" class="oe_inline"/>
+								</div>
+								 <div>
+									<label for="spare_csv"/>
+									<field name="spare_csv" class="oe_inline"/>
+								</div>
+							</div>
+						</group>
+					</div>
+					<div>
+						<button name="spare_parts_call_importer" string="Import spare pars" class="oe_highlight" type="object" />
+					</div>
+					
+				</form>
+			</field>
+		</record>
+
+		<record id="action_spare_parts_config" model="ir.actions.act_window">
+			<field name="name">Configure Spare_parts</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">spare_parts.config.settings</field>
+			<field name="view_id" ref="view_spare_parts_config_settings"/>
+			<field name="view_mode">form</field>
+			<field name="target">inline</field>
+		</record>
+
+
+		<menuitem name="Spare parts" id="spare_parts_settings" sequence="68"  web_icon="event,static/description/icon.png"/>
+
+   		<menuitem name="Spare parts settings" id="menu_action_registration" parent="spare_parts_settings"/>
+
+		
+
+		<menuitem id="menu_spare_parts_global_settings" name="Settings spare parts"  parent="menu_action_registration" sequence="0" action="action_spare_parts_config"/>
+
+
+
+
+
+		
+
+		
+	</data>
+</openerp>
