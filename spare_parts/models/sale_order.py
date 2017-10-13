@@ -27,17 +27,18 @@ class SaleOrderLine(models.Model):
 	#@api.multi
 
 
-	#@api.depends('product_id')
+
 	#@api.onchange('product_id')
+	@api.depends('product_id')
 	def get_stock_quant(self):
 		#izbrani id na formi
 		product_id = self.product_id.id
+		product_name = self.product_id.name
 		related_default_code_obj = self.env['product.product'].search([('id','=',product_id)], limit=1).related_default_code
 		product_ids = tuple(r.id for r in related_default_code_obj)
 		uid = self._uid
 		#ispraznimo tabelu za određeni uid
-		#self.env.cr.execute("""delete from sale_order_stock_qty_wizz where create_uid = %(uid)s""", {'uid':uid})
-
+		self.env.cr.execute("""delete from sale_order_stock_quantity_wizz where create_uid = %(uid)s""", {'uid': uid})
 		if product_ids:
 			self.env.cr.execute("""
 					select 	pp.id, 
@@ -57,9 +58,8 @@ class SaleOrderLine(models.Model):
 					order by sq.location_id	""", {'product_ids': product_ids})
 
 			res = self.env.cr.dictfetchall()
-			ids=[]
+			product_ids=[]
 			for r in res:
-				ids.append(r['id'])
 				vals = {'product_id': r['id'],
 						'product_name': r['name'],
 						'default_code':r['default_code'],
@@ -69,30 +69,35 @@ class SaleOrderLine(models.Model):
 						'location_id':r['location_id'],
 						'location_name': r['warehouse_name'],}
 
-				self.sale_order_stock_qty.create((0,_,vals))
+				#self.update({'sale_order_stock_qty': (0,0,vals)})
+				self.sale_order_stock_qty.create(vals)
+				self.sale_order_stock_qty_wizz.create(vals)
 
+			return
 
 	#izmjena produkta iza odabira
 	@api.onchange('sale_order_stock_qty_wizz')
 	def get_selected_product(self):
-
-		if len(self.sale_order_stock_qty.ids) > 1:
+		uid = self._uid
+		if len(self.sale_order_stock_qty_wizz.ids) > 1:
 			raise osv.except_osv(('Opozorilo'), ('Možno je izbrat samo eden izdelek!!!'))
 		try:
-			self.update({'product_id': self.sale_order_stock_qty.product_id,
+			self.update({'product_id': self.sale_order_stock_qty_wizz.product_id,
 						 'dt_stock':1,
 						 'tm_stock':1})
+
 		except UserError:
 			pass
 		return
 
 
 
-	sale_order_stock_qty = fields.Many2many('sale.order.stock.quantity', string='Stock quantity', default=get_stock_quant)
-	#sale_order_stock_qty_wizz = fields.Many2many('sale.order.stock.quantity.wizz', string='Quantity on hand', default=get_stock_quant)
+	sale_order_stock_qty = fields.Many2many('sale.order.stock.quantity', string='Stock quantity', compute='get_stock_quant', store=True)
+	sale_order_stock_qty_wizz = fields.Many2many('sale.order.stock.quantity.wizz', string='Quantity on hand')#, compute='get_stock_quant')
 	dt_stock = fields.Integer('DT', readonly=True)
 	tm_stock = fields.Integer('TM', readonly=True)
 
+#This model is just for view no other Functionalities
 class SaleOrderStockQuantity(models.Model):
 	_name = 'sale.order.stock.quantity'
 
