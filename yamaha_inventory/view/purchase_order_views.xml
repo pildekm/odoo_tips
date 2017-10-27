@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>purchase_order_line_tree
+	<data>
+		<record id="purchase_order_form_inherit" model="ir.ui.view">
+			<field name="name">purchase.order.form.inherit</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="arch" type="xml">
+				<field name="currency_id" position="after">
+					<group colspan="2" col="2">
+						<field name="parts_ref" widget="char"/>
+						<field name="accessories_ref" widget="char"/>
+						<field name="ixs_ref" widget="char"/>
+					</group>
+				</field>
+				<xpath expr="//field[@name='order_line']/tree//field[@name='date_planned']" position="after">
+					<field name="ref_number" widget="char"/>
+					<!--<field name="accessories_rel"/>-->
+					<!--<field name="parts_rel"/>-->
+					<!--<field name="ixs_rel"/>-->
+				</xpath>
+
+			</field>
+		</record>
+	</data>
+</openerp>
