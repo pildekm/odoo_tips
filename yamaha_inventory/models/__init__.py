@@ -1,3 +1,3 @@
 import stock_move
-import stock_picking
+import stock_picking_checking
 import purchase

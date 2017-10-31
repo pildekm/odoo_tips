@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="stock_picking_checking_search" model="ir.ui.view">
+			<field name="name">stock.picking.checking.search</field>
+			<field name="model">stock.picking.checking</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="partner_id"/>
+					<field name="product_id"/>
+				</search>
+				<group string="Group by">
+					<filter name="group_by_partner" string="Partner" icon="terp-personal" context="{'group_by':'partner_id'}"/>
+					<field name="partner_id"/>
+				</group>
+			</field>
+		</record>
+
+		<record id="stock_picking_checking_tree" model="ir.ui.view">
+			<field name="name">stock.picking.checking.tree</field>
+			<field name="model">stock.picking.checking</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Stock Checking" editable="top">
+					<field name="partner_id"/>
+					<field name="product_id"/>
+					<field name="product_qty"/>
+					<field name="qty_done"/>
+					<field name="name"/>
+					<field name="location_dest_id"/>
+					<field name="origin"/>
+					<!--<field name="state"/>-->
+				</tree>
+			</field>
+		</record>
+
+		<record id="stock_picking_checking_form" model="ir.ui.view">
+			<field name="name">stock.picking.checking.form</field>
+			<field name="model">stock.picking.checking</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Stock Checking">
+					<field name="partner_id"/>
+					<field name="product_id"/>
+					<field name="product_qty"/>
+					<field name="qty_done"/>
+					<field name="name"/>
+					<field name="location_dest_id"/>
+					<field name="origin"/>
+					<!--<field name="state"/>-->
+				</form>
+			</field>
+		</record>
+
+		<record id="action_stock_picking_checking" model="ir.actions.act_window">
+		<field name="name">Stock Picking Checking</field>
+		<field name="res_model">stock.picking.checking</field>
+		<field name="view_type">tree</field>
+		<!--<field name="view_mode">tree,form</field>-->
+		<field name="view_id" ref="stock_picking_checking_tree"/>
+		<field name="context">{'group_by':'partner_id'}</field>
+		<!--<field name="target">new</field>-->
+		</record>
+
+		<record id="stock_picking_checking_kanban" model="ir.ui.view">
+			<field name="name">stock.picking.checking.kanban</field>
+			<field name="model">stock.picking.type</field>
+			<field name="inherit_id" ref="stock.stock_picking_type_kanban"/>
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//div[contains(@class, 'o_kanban_primary_left')]" position="inside">
+						<button class="btn btn-primary" name="get_data" type="object">Checking</button>
+					</xpath>
+				</data>
+			</field>
+		</record>
+
+	</data>
+</odoo>

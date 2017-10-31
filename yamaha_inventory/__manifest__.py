@@ -7,6 +7,7 @@
     "category": "Inventory",
     "depends": ['stock', 'purchase'],
     "data": ['view/stock_move_views.xml',
-             'view/purchase_order_views.xml',],
+             'view/purchase_order_views.xml',
+             'view/stock_picking_checking_view.xml',],
     'installable': True,
 }
