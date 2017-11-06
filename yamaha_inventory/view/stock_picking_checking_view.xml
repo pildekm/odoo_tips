@@ -2,27 +2,53 @@
 <odoo>
 	<data>
 
-		<record id="stock_picking_checking_search" model="ir.ui.view">
-			<field name="name">stock.picking.checking.search</field>
-			<field name="model">stock.picking.checking</field>
+		<record id="stock_picking_checking_search1" model="ir.ui.view">
+			<field name="name">stock.picking.checking.search1</field>
+			<field name="model">stock.picking.checking1</field>
+			<field name="type">search</field>
 			<field name="arch" type="xml">
 				<search>
 					<field name="partner_id"/>
-					<field name="product_id"/>
+					<group string="Group by">
+						<filter name="partner" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+					</group>
 				</search>
-				<group string="Group by">
-					<filter name="group_by_partner" string="Partner" icon="terp-personal" context="{'group_by':'partner_id'}"/>
-					<field name="partner_id"/>
-				</group>
 			</field>
 		</record>
 
-		<record id="stock_picking_checking_tree" model="ir.ui.view">
-			<field name="name">stock.picking.checking.tree</field>
-			<field name="model">stock.picking.checking</field>
+		<record id="stock_picking_checking_tree1" model="ir.ui.view">
+			<field name="name">stock.picking.checking.tree1</field>
+			<field name="model">stock.picking.checking1</field>
+			<field name="arch" type="xml">
+				<tree string="Stock Checking">
+					<field name="partner_id"/>
+					<field name="spc_line"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="stock_picking_checking_form1" model="ir.ui.view">
+			<field name="name">stock.picking.checking.form1</field>
+			<field name="model">stock.picking.checking1</field>
+			<field name="arch" type="xml">
+				<form string="Stock Checking" >
+					<field name="partner_id"/>
+					<notebook>
+						<page string="Stock checking line">
+							<field name="spc_line"/>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="stock_picking_checking_line_tree1" model="ir.ui.view">
+			<field name="name">stock.picking.checking.line.tree1</field>
+			<field name="model">stock.picking.checking.line1</field>
 			<field name="type">tree</field>
 			<field name="arch" type="xml">
-				<tree string="Stock Checking" editable="top">
+				<tree string="Stock Checking" editable="top" create="false" delete="false">
 					<field name="partner_id"/>
 					<field name="product_id"/>
 					<field name="product_qty"/>
@@ -35,42 +61,45 @@
 			</field>
 		</record>
 
-		<record id="stock_picking_checking_form" model="ir.ui.view">
-			<field name="name">stock.picking.checking.form</field>
-			<field name="model">stock.picking.checking</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Stock Checking">
-					<field name="partner_id"/>
-					<field name="product_id"/>
-					<field name="product_qty"/>
-					<field name="qty_done"/>
-					<field name="name"/>
-					<field name="location_dest_id"/>
-					<field name="origin"/>
-					<!--<field name="state"/>-->
-				</form>
-			</field>
-		</record>
 
-		<record id="action_stock_picking_checking" model="ir.actions.act_window">
-		<field name="name">Stock Picking Checking</field>
-		<field name="res_model">stock.picking.checking</field>
-		<field name="view_type">tree</field>
-		<!--<field name="view_mode">tree,form</field>-->
-		<field name="view_id" ref="stock_picking_checking_tree"/>
-		<field name="context">{'group_by':'partner_id'}</field>
-		<!--<field name="target">new</field>-->
-		</record>
+		<!--Postavi search i tree-->
+		<record id="checking_picking_filter_action1" model="ir.actions.act_window">
+            <field name="name">Checking</field>
+			<field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking.checking1</field>
+            <field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+            <field name="search_view_id" ref="stock_picking_checking_search1"/>
+            <!--<field name="view_id" ref="stock_picking_checking_tree1"/>-->
+            <field name="help">Checking delivered goods</field>
+        </record>
 
-		<record id="stock_picking_checking_kanban" model="ir.ui.view">
-			<field name="name">stock.picking.checking.kanban</field>
+
+		<!--Dodamo meni item u Inventory control-->
+		<menuitem action="checking_picking_filter_action1" id="checking_filter_id" name="Checking" parent="stock.menu_stock_inventory_control" sequence="3"/>
+
+		<!--action ako ne koristimo return u .py-->
+		<!--<record id="action_stock_picking_checking" model="ir.actions.act_window">-->
+		<!--<field name="name">Stock Picking Checking</field>-->
+		<!--<field name="res_model">stock.picking.checking1</field>-->
+		<!--<field name="view_type">tree</field>-->
+		<!--&lt;!&ndash;<field name="view_mode">tree,form</field>&ndash;&gt;-->
+		<!--<field name="view_id" ref="stock_picking_checking_tree"/>-->
+		<!--<field name="context">{'group_by':'partner_id'}</field>-->
+		<!--&lt;!&ndash;<field name="target">new</field>&ndash;&gt;-->
+		<!--</record>-->
+
+		<record id="stock_picking_checking_kanban1" model="ir.ui.view">
+			<field name="name">stock.picking.checking1.kanban</field>
 			<field name="model">stock.picking.type</field>
 			<field name="inherit_id" ref="stock.stock_picking_type_kanban"/>
 			<field name="arch" type="xml">
 				<data>
 					<xpath expr="//div[contains(@class, 'o_kanban_primary_left')]" position="inside">
-						<button class="btn btn-primary" name="get_data" type="object">Checking</button>
+
+						<button name="%(checking_picking_filter_action1)d" type="action" target="new">Tree</button>
+						<button class="btn btn-primary" name="sort_and_create" type="object">Checking</button>
 					</xpath>
 				</data>
 			</field>
