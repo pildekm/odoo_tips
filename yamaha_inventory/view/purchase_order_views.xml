@@ -14,7 +14,8 @@
 					</group>
 				</field>
 				<xpath expr="//field[@name='order_line']/tree//field[@name='date_planned']" position="after">
-					<field name="ref_number" widget="char"/>
+					<field name="ref_number" on_change="0" widget="char"/>
+
 					<!--<field name="accessories_rel"/>-->
 					<!--<field name="parts_rel"/>-->
 					<!--<field name="ixs_rel"/>-->

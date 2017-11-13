@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="barcode_rule_product_checking" model="barcode.rule">
+            <field name="name">Product checking</field>
+            <field name="barcode_nomenclature_id" ref="barcodes.default_barcode_nomenclature"/>
+            <field name="sequence">46</field>
+            <field name="type">product</field>
+            <field name="encoding">any</field>
+            <field name="pattern">.*</field>
+        </record>
+    </data>
+</odoo>

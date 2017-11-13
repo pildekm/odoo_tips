@@ -12,6 +12,7 @@
 				<!--</xpath>-->
 				<field name="product_uom_qty" position="after">
 					<field name="move_dest_partner"/>
+
 				</field>
 
 			</field>
