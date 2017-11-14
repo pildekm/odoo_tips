@@ -33,6 +33,7 @@
 			<field name="arch" type="xml">
 				<form>
 				<header>
+					<button class="btn btn-primary" name="transfer" string="Transfer" type="object"/>
 					<button class="btn btn-primary" name="validate" string="Validate" type="object"/>
 					<button class="btn btn-primary" name="unvalidate" string="Unvalidate" type="object"/>
 				</header>
@@ -94,6 +95,7 @@
 						<page string="Background">
 							<group>
 								<field name="picking_id" widget="char"/>
+								<field name="sp_id" widget="char"/>
 							</group>
 						</page>
 					</notebook>

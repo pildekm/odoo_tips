@@ -19,6 +19,7 @@ class StockPickingChecking(models.Model):
 						raise UserError(_('Imamo višek izdelkov. [%s x %s]') %(visek, self.spc_line[index].product_id.name))
 		return res
 
+	#metoda se aktivira po skeniranem izdelku
 	def on_barcode_scanned(self, barcode):
 		for line in self.spc_line:
 			if line.product_id.code == barcode:
@@ -61,13 +62,34 @@ class StockPickingChecking(models.Model):
 	# barcode = fields.Char('Barcode', copy=False, oldname='loc_barcode')
 	# barcode_nomenclature_id = fields.Many2one('barcode.nomenclature', 'Barcode Nomenclature')
 
+	@api.onchange('spc_line')
+	def update_qty_in_line(self):
+		picking_id = self.spc_line.picking_id.id
+		stock_pack_operation = self.env['stock.pack.operation'].search([('picking_id', '=', picking_id)])
+		if self.spc_line.qty_done > self.spc_line.product_qty:
+			return {'warning': {'title': _('Napaka'), 'message': _('Imamo višek izdelkov.')}}
+		stock_pack_operation.write({'qty_done': self.spc_line.qty_done})
 
-	@api.model
-	def default_get(self, fields):
-		res = super(StockPickingChecking, self).default_get(fields)
-		if 'barcode' in fields and 'barcode' not in res and res.get('complete_name'):
-			res['barcode'] = res['complete_name']
-		return res
+	# @api.model
+	# def default_get(self, fields):
+	# 	res = super(StockPickingChecking, self).default_get(fields)
+	# 	if 'barcode' in fields and 'barcode' not in res and res.get('complete_name'):
+	# 		res['barcode'] = res['complete_name']
+	# 	return res
+
+	@api.multi
+	def transfer(self):
+		picking_ids = []
+		SP_obj = self.env['stock.picking']
+		stock_picking_checking_ids = self.spc_line
+		for spci in stock_picking_checking_ids:
+			picking_id = spci.sp_id
+			if not picking_id in picking_ids:
+				picking_ids.append(picking_id)
+
+		for id in picking_ids:
+			picking = SP_obj.search([('id', '=', id)])
+			picking.do_new_transfer()
 
 class StockPickingCheckingLine(models.Model):
 	_name = 'stock.picking.checking.line'
@@ -96,24 +118,6 @@ class StockPickingType(models.Model):
 		stock_picking = self.env['stock.picking'].search([('picking_type_id','=',stock_picking_type_id),('state','in',('assigned','partially_available'))])
 		self.env.cr.execute("""delete from stock_picking_checking_line""")
 		self.env.cr.execute("""delete from stock_picking_checking""")
-		self.env.cr.execute("""
-			select  sp.id as sp_id,
-			        spo.id as spo_id,
-			        spo.picking_id,
-					sp.partner_id,
-					sp.name,
-					sp.location_dest_id,
-					sp.origin,
-					sp.state,
-					spo.product_id,
-					spo.product_qty,
-					spo.qty_done
-				from stock_picking sp
-				left join stock_pack_operation spo on spo.picking_id = sp.id
-				where sp.state like 'assigned'
-				and sp.picking_type_id = %(stock_picking_type_id)s
-				order by sp.partner_id""" %{'stock_picking_type_id': stock_picking_type_id})
-		res = self.env.cr.dictfetchall()
 		return stock_picking
 
 	@api.multi
@@ -128,13 +132,13 @@ class StockPickingType(models.Model):
 					                         'qty_done':  o.qty_done, 'name':r.name,
 											 'location_dest_id': o.location_dest_id.id,
 											 'origin':  r.origin, 'state':  o.state, 'partner_id': r.partner_id.id,
-											'picking_id': o.picking_id.id,})
+											'picking_id': o.picking_id.id, 'sp_id': o.picking_id.id})
 				else:
 					data[r.partner_id.id] = [{'product_id': o.product_id.id, 'product_qty': o.product_qty,
 					                         'qty_done': o.qty_done, 'name':r.name,
 											 'location_dest_id': o.location_dest_id.id,
 											 'origin': r.origin, 'state': o.state, 'partner_id': r.partner_id.id,
-											 'picking_id': o.picking_id.id,}]
+											 'picking_id': o.picking_id.id, 'sp_id': o.picking_id.id}]
 
 		SPCL_obj = self.env['stock.picking.checking.line']
 		SPC_obj = self.env['stock.picking.checking']
@@ -144,7 +148,7 @@ class StockPickingType(models.Model):
 		                    'qty_done': a['qty_done'], 'name':a['name'],
 		                    'location_dest_id': a['location_dest_id'],
 		                    'origin': a['origin'], 'state': a['state'], 'partner_id': a['partner_id'],
-		                    'picking_id': a['picking_id'], 'spc_line_id': 1})for a in data[d]]
+		                    'picking_id': a['picking_id'], 'sp_id': a['sp_id'], 'spc_line_id': 1})for a in data[d]]
 
 			vals.update({'partner_id': d, 'spc_line': lines})
 			SPC_obj.create(vals)

@@ -7,8 +7,7 @@
             <form string="Checking validation">
                 <group>
                     <p>
-                        You haven't set processed (<i>done</i>) quantities. Click <i>apply</i> and
-                        Odoo will process all quantities to do.
+                        Pokreni validacijo!!!!
                     </p>
                 </group>
                 <footer>
