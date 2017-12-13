@@ -33,9 +33,10 @@
 			<field name="arch" type="xml">
 				<form>
 				<header>
-					<button class="btn btn-primary" name="transfer" string="Transfer" type="object"/>
-					<button class="btn btn-primary" name="validate" string="Validate" type="object"/>
-					<button class="btn btn-primary" name="unvalidate" string="Unvalidate" type="object"/>
+					<!--<button class="btn btn-primary" name="transfer" string="Transfer" type="object"/>-->
+					<button class="btn btn-primary" name="validate" string="Potrdi" type="object"/>
+					<!--<button class="btn btn-primary" name="transfer_all" string="Transfer all" type="object"/>-->
+					<button class="btn btn-primary" name="validate_all" string="Potrdi vse" type="object"/>
 				</header>
 
 					<group string="Stock Checking">
@@ -56,15 +57,15 @@
 			<field name="name">stock.picking.checking.line.tree</field>
 			<field name="model">stock.picking.checking.line</field>
 			<field name="arch" type="xml">
-				<tree string="Stock Checking" editable="top" create="false" delete="false">
+				<tree string="Stock Checking" editable="top" create="false" delete="false"  decoration-info="state in ('assigned','partially_available','waiting') and qty_done == 0" decoration-success="qty_done==product_qty and state=='done'" decoration-muted="qty_done&gt;0 and state != 'done'">
 					<field name="partner_id"/>
 					<field name="product_id"/>
 					<field name="product_qty"/>
-					<field name="qty_done"/>
+					<field name="qty_done" attrs="{'readonly':[('state','=','done')]}"/>
 					<field name="name"/>
 					<field name="location_dest_id"/>
 					<field name="origin"/>
-					<!--<field name="state"/>-->
+					<field name="state"/>
 				</tree>
 			</field>
 		</record>
@@ -94,8 +95,10 @@
 						</page>
 						<page string="Background">
 							<group>
-								<field name="picking_id" widget="char"/>
+								<field name="picking_id" />
 								<field name="sp_id" widget="char"/>
+								<field name="operation_id"/>
+								<field name="po_id" widget="char"/>
 							</group>
 						</page>
 					</notebook>
@@ -104,32 +107,14 @@
 		</record>
 
 
-		<!--Postavi search i tree-->
-		<record id="checking_picking_filter_action1" model="ir.actions.act_window">
+		<record id="checking_picking_filter_action2" model="ir.actions.server">
             <field name="name">Checking</field>
-			<field name="type">ir.actions.act_window</field>
-            <field name="res_model">stock.picking.checking</field>
-            <field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
-			<field name="context">{}</field>
-            <field name="search_view_id" ref="stock_picking_checking_search"/>
-            <!--<field name="view_id" ref="stock_picking_checking_tree1"/>-->
-            <field name="help">Checking delivered goods</field>
+            <field name="model_id" ref="yamaha_inventory_new.model_stock_picking_type"/>
+            <field name="code">action = model.sort_and_create()</field>
         </record>
 
 		<!--Dodamo meni item u Inventory control-->
-		<menuitem action="checking_picking_filter_action1" id="checking_filter_id" name="Checking" parent="stock.menu_stock_inventory_control" sequence="3"/>
-
-		<!--action ako ne koristimo return u .py-->
-		<!--<record id="action_stock_picking_checking" model="ir.actions.act_window">-->
-		<!--<field name="name">Stock Picking Checking</field>-->
-		<!--<field name="res_model">stock.picking.checking1</field>-->
-		<!--<field name="view_type">tree</field>-->
-		<!--&lt;!&ndash;<field name="view_mode">tree,form</field>&ndash;&gt;-->
-		<!--<field name="view_id" ref="stock_picking_checking_tree"/>-->
-		<!--<field name="context">{'group_by':'partner_id'}</field>-->
-		<!--&lt;!&ndash;<field name="target">new</field>&ndash;&gt;-->
-		<!--</record>-->
+		<menuitem action="checking_picking_filter_action2" id="checking_filter_id" name="Checking" parent="stock.menu_stock_inventory_control" sequence="3"/>
 
 		<record id="stock_picking_checking_kanban" model="ir.ui.view">
 			<field name="name">stock.picking.checking.kanban</field>
@@ -138,9 +123,9 @@
 			<field name="arch" type="xml">
 				<data>
 					<xpath expr="//div[contains(@class, 'o_kanban_primary_left')]" position="inside">
-
-						<button name="%(checking_picking_filter_action1)d" type="action" target="new">Tree</button>
 						<button class="btn btn-primary" name="sort_and_create" type="object">Checking</button>
+						<button class="btn btn-primary" name="update_taxes_id" type="object">update</button>
+						<button class="btn btn-primary" name="update_expense_policy" type="object">expense policy</button>
 					</xpath>
 				</data>
 			</field>

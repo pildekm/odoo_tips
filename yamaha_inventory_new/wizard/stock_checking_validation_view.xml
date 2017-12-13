@@ -7,11 +7,13 @@
             <form string="Checking validation">
                 <group>
                     <p>
-                        Pokreni validacijo!!!!
+	                    Potrdi. <br/>
+	                    1. Sami lahko skeniramo ali vnesemo število izdelkov v Done<br/>
+	                    2. V primeru da ni vseh izdelkov oziroma ToDo in Done se ne ujemata se ustvari backorder<br/>
                     </p>
                 </group>
                 <footer>
-                    <button name="update" string="_Apply" type="object" class="btn-primary"/>
+                    <button name="transfer" string="_Apply" type="object" class="btn-primary"/>
                     <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
             </form>

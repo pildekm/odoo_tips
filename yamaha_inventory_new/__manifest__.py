@@ -8,8 +8,10 @@
     "depends": ['stock', 'purchase', 'barcodes',],
     "data": ['data/default_barcode_patterns.xml',
 	         'view/stock_move_views.xml',
-             'view/purchase_order_views.xml',
              'view/stock_picking_checking_view.xml',
-             'wizard/stock_checking_validation_view.xml'],
+             'view/stock_picking_view.xml',
+			 'wizard/stock_checking_validation_view.xml',
+			 'wizard/stock_checking_transfer_all_view.xml',
+              ],
     'installable': True,
 }

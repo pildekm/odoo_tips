@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_inventory_card_tree" model="ir.ui.view">
+	    <field name="name">inventory.card</field>
+	    <field name="model">stock.move</field>
+	    <field name="inherit_id" ref="stock.view_move_tree"/>
+	    <field name="arch" type="xml">
+
+		    <field name="name" position="attributes">
+			    <attribute name="invisible">True</attribute>
+		    </field>
+		    <field name="location_id" position="attributes">
+			    <attribute name="invisible">True</attribute>
+		    </field>
+		    <field name="location_dest_id" position="attributes">
+			    <attribute name="invisible">True</attribute>
+		    </field>
+		    <field name="date" position="attributes">
+			    <attribute name="invisible">True</attribute>
+		    </field>
+		    <field name="date_expected" position="attributes">
+			    <attribute name="invisible">True</attribute>
+		    </field>
+
+		    <field name="picking_id" position="before">
+			    <field name="date_out"/>
+			    <field name="invoice_number"/>
+			    <field name="invoice_date"/>
+			    <field name="amount"/>
+			    <field name="company_currency_id" invisible="1"/>
+		    </field>
+
+	    </field>
+	</record>
+	</data>
+</odoo>
