@@ -1,8 +1,9 @@
 {
-    "name": "Yamaha Inventory New",
+    "name": "Stock picking checking",
+    "summary": """All pickings per partner validation""",
     "version": "1.0",
 	"summary": "Inventory",
-    "author": "GMM Yamaha",
+    "author": "GMM",
     "license": "GPL-3",
     "category": "Inventory",
     "depends": ['stock', 'purchase', 'barcodes',],

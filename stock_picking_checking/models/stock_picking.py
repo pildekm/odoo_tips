@@ -107,7 +107,7 @@ class StockPicking(models.Model):
 					pack_operations_delete |= operation
 			if pack_operations_delete:
 				pack_operations_delete.unlink()
-		self.do_transfer()
+		pick.do_transfer()
 
 	@api.multi
 	def _process_backorder(self, pick):

@@ -109,7 +109,7 @@
 
 		<record id="checking_picking_filter_action2" model="ir.actions.server">
             <field name="name">Checking</field>
-            <field name="model_id" ref="yamaha_inventory_new.model_stock_picking_type"/>
+            <field name="model_id" ref="stock_picking_checking.model_stock_picking_type"/>
             <field name="code">action = model.sort_and_create()</field>
         </record>
 

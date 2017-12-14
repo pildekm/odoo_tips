@@ -34,7 +34,7 @@ class StockPickingChecking(models.Model):
 	@api.multi
 	def validate(self):
 		for pick in self:
-			view = self.env.ref('yamaha_inventory_new.stock_checking_validation_view')
+			view = self.env.ref('stock_picking_checking.stock_checking_validation_view')
 			wiz = self.env['stock.checking.validation'].create({'pick_id': pick.id})
 			return {
 	                    'name': _('Checking validation?'),
@@ -52,7 +52,7 @@ class StockPickingChecking(models.Model):
 	@api.multi
 	def validate_all(self):
 		for pick in self:
-			view = self.env.ref('yamaha_inventory_new.stock_checking_transfer_all_view')
+			view = self.env.ref('stock_picking_checking.stock_checking_transfer_all_view')
 			wiz = self.env['stock.checking.transfer.all'].create({'pick_id': pick.id})
 			return {
 						'name': _('Transfer all?'),
@@ -178,7 +178,7 @@ class StockPickingType(models.Model):
 			vals = {}
 			lines = []
 
-		search_view_id = self.env.ref('yamaha_inventory_new.stock_picking_checking_search', False).id
+		search_view_id = self.env.ref('stock_picking_checking.stock_picking_checking_search', False).id
 
 		return {
 				'name': 'Check picking',
