@@ -1,0 +1,1 @@
+import manufacturer_certificate_controller

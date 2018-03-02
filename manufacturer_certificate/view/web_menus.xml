@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+
+		<record id="menu_manufacturercertificate" model="website.menu">
+            <field name="name">Potvrda proizvođača</field>
+            <field name="url">/manufacturer/certificate</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">60</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+	</data>
+</odoo>
