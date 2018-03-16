@@ -65,32 +65,32 @@
 							<group>
 								<button class="oe_highlight" name="centar_za_vozila"
 								        type="object" string="Centar za vozila"
-										attrs="{'invisible': [('state', 'in', ['vin','incorrect','done','cancel'])]}"/>
+										attrs="{'invisible': [('state', 'in', ['vin','incorrect','payment','done','cancel'])]}"/>
 								<button class="oe_highlight" name="provjera_s_tvornicom"
 								        type="object" string="Provjera s tvornicom"
 										attrs="{'invisible': [('state', 'in', ['vin','incorrect','done','cancel'])]}"/>
 							</group>
 
 						</page>
-						<page string="Dokumenti za izdavanje certifikata" attrs="{'invisible': [('state', 'in', ['draft','contact'])]}">
-							<separator string="Dokumenti potrebni za izdavanje potvrde proizvođača:"/>
-							<group>
-								<p>Kopija prometne dozvole vozila, Račun</p>
-							</group>
-							<separator/>
-							<group>
-								<field name="doc1" colspan="4"/>
-								<field name="doc2" colspan="4"/>
-								<field name="doc3" colspan="4"/>
-								<field name="doc4" colspan="4"/>
-								<field name="doc5" colspan="4"/>
-								<button class="oe_highlight" name="confirm_documentation"
-								        type="object"
-								        string="Potvrdi dokumentaciju"
-										attrs="{'invisible': [('state','not in',['vin','incorrect'])]}"/>
-								<!--<button class="oe_highlight" name="upload_document" type="object" string="Upload Document"/>-->
-							</group>
-						</page>
+						<!--<page string="Dokumenti za izdavanje certifikata" attrs="{'invisible': [('state', 'in', ['draft','contact'])]}">-->
+							<!--<separator string="Dokumenti potrebni za izdavanje potvrde proizvođača:"/>-->
+							<!--<group>-->
+								<!--<p>Kopija prometne dozvole vozila, Račun</p>-->
+							<!--</group>-->
+							<!--<separator/>-->
+							<!--<group>-->
+								<!--<field name="doc1" colspan="4"/>-->
+								<!--<field name="doc2" colspan="4"/>-->
+								<!--<field name="doc3" colspan="4"/>-->
+								<!--<field name="doc4" colspan="4"/>-->
+								<!--<field name="doc5" colspan="4"/>-->
+								<!--<button class="oe_highlight" name="confirm_documentation"-->
+								        <!--type="object"-->
+								        <!--string="Potvrdi dokumentaciju"-->
+										<!--attrs="{'invisible': [('state','not in',['vin','incorrect'])]}"/>-->
+								<!--&lt;!&ndash;<button class="oe_highlight" name="upload_document" type="object" string="Upload Document"/>&ndash;&gt;-->
+							<!--</group>-->
+						<!--</page>-->
 						<page string="Dokumentacija" attrs="{'invisible': [('state', 'in', ['draft','contact','vin','done','payment'])]}">
 							<group>
 								<field name="note" attrs="{'invisible': [('state', '=', 'payment')]}"/>

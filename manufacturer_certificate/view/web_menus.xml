@@ -10,5 +10,14 @@
             <field name="sequence" type="int">60</field>
             <field name="website_id" ref="website.default_website"/>
         </record>
+
+
+		<!--<record id="menu_upload_test" model="website.menu">-->
+            <!--<field name="name">Upload test</field>-->
+            <!--<field name="url">/manufacturer/certificate_upload_documents_test</field>-->
+            <!--<field name="parent_id" ref="website.main_menu"/>-->
+            <!--<field name="sequence" type="int">61</field>-->
+            <!--<field name="website_id" ref="website.default_website"/>-->
+        <!--</record>-->
 	</data>
 </odoo>

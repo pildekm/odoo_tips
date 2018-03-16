@@ -115,7 +115,7 @@ class ManufacturerCertificate(models.Model):
 
     def check_vin_number(self):
         self.user = self.env['res.users'].search([('id', '=', self._uid)]).partner_id.name
-
+        status = ''
         #ako možemo a nemamo ga u bazi state = waiting
         #ako možemo state = vin
         #kreiramo vozilo zapišemo ga u model manufacturer.certificate vehicle
@@ -144,7 +144,8 @@ class ManufacturerCertificate(models.Model):
             vin_market = self.vin_number[8:11]
             #provjerimo dali je vozilo za eu tržište
             if vin_market != '000':
-                self.vozilo_not_eu()
+                status = self.vozilo_not_eu()
+                return status
             else:
                 #provjerimo postoji li vozilo u bazi
                 self.env.cr.execute(""" 
@@ -156,18 +157,22 @@ class ManufacturerCertificate(models.Model):
                         if r['vin'][3:8] == vin_tmp and r['vin'][8:11] == '000':
                             self.write({'state': 'vin'})
                             print 'Posotji vin'
+                            return self.state
                             break
 
                 else:
                     #vozilo ne postoji u bazi
                     self.write({'state': 'waiting'})
+                    return self.state
                     #adolf provjeri sa yamahom ako nema podatak ide button -> self.centar_za_vozila
+
 
     def vozilo_not_eu(self):
         # ako nemožemo izdat certifikat state = cancel
         self.write({'state': 'cancel'})
         template = self.env.ref('manufacturer_certificate.manufacturer_certificate_template_cancel')
         self.env['mail.template'].browse(template.id).send_mail(self.id)
+        return self.state
 
 
     def centar_za_vozila(self):
@@ -175,19 +180,23 @@ class ManufacturerCertificate(models.Model):
         self.write({'state': 'waiting'})
         template = self.env.ref('manufacturer_certificate.manufacturer_certificate_template_waiting')
         self.env['mail.template'].browse(template.id).send_mail(self.id)
+        return 'vozila'
 
     def provjera_s_tvornicom(self):
         # ako možemo a nemamo ga u bazi state = waiting
         self.write({'state': 'waiting'})
         template = self.env.ref('manufacturer_certificate.manufacturer_certificate_template_company_waiting')
         self.env['mail.template'].browse(template.id).send_mail(self.id)
+        return 'tvornica'
 
-    def confirm_documentation(self):
-        if self.doc1 or self.doc2 or self.doc3 or self.doc4 or self.doc5:
+    def confirm_documentation(self, mc_id):
+        att_obj = self.env['ir.attachment'].search([('res_id', '=', mc_id), ('res_model', '=', 'manufacturer.certificate')])
+        if att_obj:
             self.user = self.env['res.users'].search([('id', '=', self._uid)]).partner_id.name
             self.write({'state': 'waiting'})
             template = self.env.ref('manufacturer_certificate.manufacturer_certificate_template_uploaded_doc')
             self.env['mail.template'].browse(template.id).send_mail(self.id)
+            return 'dokumentacija'
         else:
             raise UserError(_('Niste priložili nikakvu dokumentaciju. Priložite dokumentaciju i ponovo kliknite "Potvrdi dokumentaciju"'))
 
@@ -246,11 +255,11 @@ class ManufacturerCertificate(models.Model):
         self.write({'state': 'incorrect'})
         template = self.env.ref('manufacturer_certificate.manufacturer_certificate_template_incorrect_doc')
         self.env['mail.template'].browse(template.id).send_mail(self.id)
-        self.doc1 = None
-        self.doc2 = None
-        self.doc3 = None
-        self.doc4 = None
-        self.doc5 = None
+        # self.doc1 = None
+        # self.doc2 = None
+        # self.doc3 = None
+        # self.doc4 = None
+        # self.doc5 = None
 
     @api.multi
     def send_mail_template(self):
@@ -305,13 +314,14 @@ class ManufacturerCertificateVehicle(models.Model):
         vin_identical = self.env.cr.dictfetchall()
         if vin_identical:
             raise UserError(_('Vozilo sa unesenom Vin oznakom već postoji.'))
+            # rendaj template da postoji identični vin u bazi
 
         res = super(ManufacturerCertificateVehicle, self).create(vals)
         return res
 
     def uvezi(self):
-        #uvoz csv datoteke
-        with open('/home/matija/Desktop/MCV1.csv', 'r') as myfile:
+        #uvoz csv datoteke podatke o vozilima
+        with open('/home/matija/Desktop/Yamaha/MCV1.csv', 'r') as myfile:
             data = csv.reader(myfile)
             i = 0
             for d in data:

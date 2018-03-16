@@ -1,4 +1,4 @@
-odoo.define('manufacturer_certificate.payment', function(require) {
+odoo.define('website_sale.payment', function(require) {
 	"use strict";
 	var core = require('web.core');
 	var _t = core._t;
@@ -6,7 +6,7 @@ odoo.define('manufacturer_certificate.payment', function(require) {
 	var currentUrl = location.href;
 	var title = $(document).find("title").text();
 	$(document).ready(function() {
-		$('.oe_website_sale').each(function(ev) {
+		$('.oe_website_upload').each(function(ev) {
 			var oe_website_sale = this;
 			ChangeUrl(title, currentUrl);
 			$(oe_website_sale).on('click', 'a.file_browse_btn', function() {
@@ -40,7 +40,7 @@ odoo.define('manufacturer_certificate.payment', function(require) {
 			$(oe_website_sale).find('input[type="file"]').on('change', function() {
 				var $form = $(this).closest('form');
 				var name = $(this)[0].files[0].name;
-				if ((!name) || name === '') {		
+				if ((!name) || name === '') {
 					$('button.file_upload_btn').hide().addClass('disabled');
 				} else {
 					$('button.file_upload_btn').show().removeClass('disabled');
@@ -51,20 +51,23 @@ odoo.define('manufacturer_certificate.payment', function(require) {
 			$(oe_website_sale).on('click', 'img.upload_hide_window', function() {
 				$('div.attachment-history').slideUp(500, function() {
 					$('img.upload_hide_window').hide();
-					
+
 				});
 			});
 
 			$(oe_website_sale).on('click', 'a#attachment-remove', function() {
 
 				var $tbody = $(this).closest('tbody');
+				var mc_id = parseInt($('#MC_id').val())
 				var attachment_id = parseInt($tbody.find('input[name="attachment-id"]').first().val(), 10);
-				ajax.jsonRpc("/shop/payment/remove_upload", 'call', {
-						'attachment_id': attachment_id
+				ajax.jsonRpc("/certificate/remove_upload", 'call', {
+						'attachment_id': attachment_id,
+                        'mc_id': mc_id,
 					})
-					.then(function(msg) {
+					.then(function() {
 						location.reload();
 					});
+
 			});
 
 			function getPathFromUrl(url) {
