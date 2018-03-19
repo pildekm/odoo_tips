@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"ir_attachment_group_client","ir_attachment_website_certificate","base.model_ir_attachment","group_website_certificate_client",1,1,1,1
+"group_website_manufacturer_certificate_client","manufacturer_certificate_rule","manufacturer_certificate.model_manufacturer_certificate","group_website_certificate_client",1,1,1,1
+"group_website_manufacturer_certificate_vehicle_client","manufacturer_certificate_vehicle_rule","manufacturer_certificate.model_manufacturer_certificate_vehicle","group_website_certificate_client",1,1,1,1
+"mail_website_manufacturer_certificate_client","mail_follower_certificate_rule","mail.model_mail_followers","group_website_certificate_client",1,1,1,1
+"mail_message_manufacturer_certificate_client","mail_message_certificate_rule","mail.model_mail_message","group_website_certificate_client",1,1,1,1
+"mail_template_manufacturer_certificate_client","mail_template_certification_rule","mail.model_mail_template","group_website_certificate_client",1,1,1,1
+"mail_mail_manufacturer_certificate_client","mail_mail_certification_rule","mail.model_mail_mail","group_website_certificate_client",1,1,1,1
+"res_partner_manufacturer_certificate_client","res_partner_certification_rule","base.model_res_partner","group_website_certificate_client",1,1,1,0

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="upload_cert_document" model="ir.ui.view">
+		<field name="name">upload.cert.document</field>
+		<field name="model">upload.certification.document</field>
+		<field name="arch" type="xml">
+			<form string="Import certification documents">
+				<group colspan="4" col="4">
+					<field name="name" invisible="True"/>
+					<field name="delimeter" invisible="1"/>
+					<field name="data1" filename="name" colspan="4" />
+					<field name="data2" filename="name" colspan="4" />
+					<field name="data3" filename="name" colspan="4" />
+					<field name="data4" filename="name" colspan="4" />
+					<field name="data5" filename="name" colspan="4" />
+				</group>
+				<separator colspan="4"/>
+				<footer>
+					<button class="oe_highlight" special="cancel" string="Cancel"/>
+					<button string="Save"  name="save_documents" type="object" class="oe_highlight"/>
+				</footer>
+			</form>
+		</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem id="menu_manufacturer_cert_root"
+            name="Manufacturer Certificate"
+            icon="fa-wrench"
+            web_icon="manufacturer_certificate,static/description/icon.png"
+            sequence="35"/>
+
+	    <menuitem action="action_manufacturer_certifiacte_tree"
+	              id="id_manufacturer_certificate_tree"
+	              name="Manufacturer certificate"
+	              parent="menu_manufacturer_cert_root"
+	              sequence="38"/>
+
+	    <menuitem action="action_manufacturer_certifiacte_vehicle_tree"
+	              id="id_manufacturer_certificate_vehicle_tree"
+	              name="Manufacturer Vehicle"
+	              parent="menu_manufacturer_cert_root"
+	              sequence="39"/>
+
+	    <!--<menuitem id="menu_motor_motorji"-->
+            <!--name="Motorji"-->
+            <!--parent="menu_motor_root"-->
+            <!--sequence="10"/>-->
+
+        <!--<menuitem id="menu_motorji_configuration"-->
+            <!--name="Configuration"-->
+            <!--parent="menu_motor_root"-->
+            <!--sequence="150"/>-->
+
+
+    </data>
+</odoo>
