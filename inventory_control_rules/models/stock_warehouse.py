@@ -12,7 +12,7 @@ class Orderpoint(models.Model):
 
     def _set_date_today(self):
 	    date = fields.Date.from_string(fields.Date.today())
-	    print('Evo mene moji ljudi')
+	    #print('Evo mene moji ljudi')
 	    return date.strftime('%Y') + '-' + date.strftime('%m') + '-' + date.strftime('%d')
 
     date_start = fields.Date('Date start')

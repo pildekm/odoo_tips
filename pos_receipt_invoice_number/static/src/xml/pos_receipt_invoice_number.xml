@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <t t-extend="Chrome">
+        <t t-jquery='.pos-branding' t-operation='replace'>
+             <img src='/web/binary/company_logo' style="width: 3%;padding: 2px 8px 0px 13px;float: left;"/>
+             <span class="placeholder-UsernameWidget" style="float: left;padding-top: 19px;color: #fff;"></span>
+        </t>
+    </t>
+    <t t-extend="PosTicket">
+
+            <t t-jquery="t[t-esc*='order.name']" t-operation="replace">
+                <t t-if="order.invoice and order.invoice.fiskalni_broj  and widget.pos.config.receipt_fiscal_number">
+                    Order <t t-esc="order.invoice.fiskalni_broj"/><br />
+                 </t>
+            </t>
+        <t t-jquery="table[class='receipt-orderlines']" t-operation="before">
+	        <div>------------------------------------------</div>
+	        <table>
+		        <tr>
+			        <td style="width:55%;">Product</td>
+			        <td style="width:30%;text-align:center;">Quantity</td>
+			        <td style="width:15%;text-align:center;">Price</td>
+		        </tr>
+	        </table>
+
+            <div>------------------------------------------</div>
+        </t>
+        <t t-jquery="tr[class='emph']" t-operation="before">
+            <div>------------------------------------------</div>
+        </t>
+
+        <t t-jquery="t[t-if*='receipt.header']" t-operation="before">
+            <t t-if="order.invoice.fiskalni_broj">
+                <div>------------------------------------------</div>
+                INV number: <t t-esc="order.invoice.fiskalni_broj"/><br />
+            </t>
+            <t t-if="client and widget.pos.config.receipt_company_logo">
+                 <div style="width: 45%;float: left; ">
+                    <img src='/web/binary/company_logo' style="width:100%"/>
+                </div>
+            </t>
+
+            <t t-set="client" t-value="order.get_client()"/>
+            <t t-if="client and widget.pos.config.receipt_customer_vat">
+                <t t-set="client" t-value="order.get_client()"/>
+                Customer: <t t-esc="client['name']"/><br />
+                <t t-if="client['street']">
+                    Street: <t t-esc="client['street']"/><br />
+                </t>
+                <t t-if="client['vat']">
+                    Tin: <t t-esc="client['vat']"/><br />
+                </t>
+                <t t-if="client['email']">
+                    Email: <t t-esc="client['email']"/><br />
+                </t>
+                <t t-if="client['phone'] or client['mobile']">
+                    Phone: <t t-esc="client['phone'] || client['mobile']"/><br />
+                </t>
+
+            </t>
+
+
+        </t>
+        <t t-jquery="t[t-if*='receipt.footer']" t-operation="before">
+	        <br />
+            <div>------------------------------------------</div>
+	        <t t-if="client and widget.pos.config.receipt_zoi">
+                <t t-if="order.invoice and order.invoice.zoi  and widget.pos.config.receipt_zoi">
+                ZOI:  <t t-esc="order.invoice.zoi"/><br />
+                </t>
+            </t>
+            <t t-if="client and widget.pos.config.receipt_eor">
+                <t t-if="order.invoice and order.invoice.eor  and widget.pos.config.receipt_eor">
+                EOR:  <t t-esc="order.invoice.eor"/><br />
+                </t>
+            </t>
+
+            <div>------------------------------------------</div>
+             <t t-if="order.invoice and order.invoice.qrcode  and widget.pos.config.receipt_qrcode">
+
+                <td><img src="/report/barcode/?type=QR&amp;value={{order.invoice.qrcode}}&amp;width=100&amp;height=100"/></td>
+             </t>
+        </t>
+    </t>
+
+    <t t-extend="XmlReceipt">
+        <t t-jquery="t[t-if*='receipt.cashier']" t-operation="before">
+            <t t-if="order.invoice_number and widget.pos.config.receipt_invoice_number">
+                <div>------------------------------------------</div>
+                Invoice Number: <t t-esc="order.invoice_number"/><br />
+            </t>
+            <t t-set="client" t-value="order.get_client()"/>
+            <t t-if="client and widget.pos.config.receipt_customer_vat">
+                <t t-set="client" t-value="order.get_client()"/>
+                Customer: <t t-esc="client['name']"/><br />
+                <t t-if="client['street']">
+                    Street: <t t-esc="client['street']"/><br />
+                </t>
+                <t t-if="client['vat']">
+                    Tin: <t t-esc="client['vat']"/><br />
+                </t>
+                <t t-if="client['email']">
+                    Email: <t t-esc="client['email']"/><br />
+                </t>
+                <t t-if="client['phone'] or client['mobile']">
+                    Phone: <t t-esc="client['phone'] || client['mobile']"/><br />
+                </t>
+
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="ClientDetails">
+        <t t-jquery="div[class*='client-details-left']" t-operation="append">
+            <div class='client-detail'>
+                <span class='label'>TIN</span>
+                <t t-if="partner.vat">
+                    <span class='detail'><t t-esc='partner.vat'/></span>
+                </t>
+            </div>
+        </t>
+    </t>
+
+</templates>

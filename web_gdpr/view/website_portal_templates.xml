@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!--My account-->
+	<template inherit_id='website_portal.details' id="details_inherit">
+		<xpath expr='//button[contains(@class, "btn btn-default btn-primary pull-right mb32")]' position='after'>
+			<div class="container mb64">
+				<div class="col-md-8 o_my_documents mt16">
+					<div class="oe_structure">
+						<a class="btn btn-info" t-attf-href="/gdpr/data">Pokaži moje podatke</a>
+						<!--<a class="btn btn-danger" t-attf-href="/gdpr/delete">Obriši moje podatke</a>-->
+						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_delete_file">Obriši moje podatke</button>
+						<div class="form-group">
+							<div class="modal fade" id="modal_delete_file" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-body">
+											<p>Jeste li sigurni da želite obrisati svoje podatke?<br> </br>
+												Ako obrišete svoje podatke za pristup aplikaciji biti će potrebna
+												nova registracija korisnika.
+											</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-success" data-dismiss="modal">Zatvori</button>
+											<a id="closemodal" class="btn btn-danger" t-attf-href="/gdpr/delete">Obriši</a>
+										</div>
+									</div>
+								</div>
+								<script type="text/javascript">
+									$('#closemodal').click(function() {
+									$('#modal_delete_file').modal('hide');
+									});
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</xpath>
+	</template>
+
+	<template inherit_id='auth_signup.signup' id="fields_auth_signup_inherit">
+		<!--<xpath expr='//div[contains(@class, "form-group field-confirm_password")]' position='after'>-->
+		<xpath expr='//div[contains(@class, "clearfix oe_login_buttons")]' position='before'>
+			<div class="container mb64">
+				<div class="col-md-8 o_my_documents mt16">
+					<style>
+
+						div.static {
+						position: relative;
+						bottom: 8px;
+						right: 30px;
+						width: 300px;
+						height: 50px;
+						}
+
+						<!--label.register {-->600
+						<!--position: relative;-->
+						<!--bottom: 200;-->
+						<!--right: 250;-->
+						<!--width: 550px;-->
+						<!--height: 60px;-->
+						<!--}-->
+
+					</style>
+					<div class="static">
+						<input id="rules" name="rules" type="checkbox" required="True" autocapitalize="off" style="color:blue;">* Slažem se sa <a href="/gdpr/gdpr_data" target="_blank">GDPR</a>, <a href="/gdpr/legal_data" target="_blank">legalnim savjetima</a>, <a href="/gdpr/privacy_policy" target="_blank">politikom privatnosti</a> na ovoj webstranici.</input>
+					</div>
+				</div>
+
+			</div>
+		</xpath>
+	</template>
+
+	<template id="gdpr_data_info" name="GDPR data info">
+		<t t-call="website.layout">
+			<div id="wrap" class="oe_structure oe_empty">
+				<section class="mt16 mb16">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 mb16 mt16"><p>Poštovani vlasnici i ljubitelji Yamahe,</p><p>Zadovoljstvo nam je najaviti da ćete u skladu s novom europskom Uredbom o zaštiti osobnih podataka imati više prava na privatnost koja će, naravno, biti poštovana. Zato ovim putem obnavljamo komunikaciju s vama, pri čemu ćemo u potpunosti poštovati vaše želje. Niže ćete pronaći transparentan obrazac u kojemu ćete jednostavno definirati na koji način želite zadržati kontakt s nama.</p><p>Hvala vam na povjerenju i želimo vam još puno zajedničkih kilometara,</p><p>Vaš TM Zagreb d.o.o. (ovlašteni zastupnik Yamaha ) za područje Republike Hrvatske</p>
+								&amp;nbsp;
+
+								<p style="text-align: center;"><strong>Yamahina pravila o zaštiti osobnih podataka</strong></p>
+
+								<p><strong/></p>
+
+								<ul><li>Tko je TM Zagreb d.o.o.</li></ul>
+
+								<p>TM Zagreb d.o.o., Susedsko polje 53, 10000 Zagreb;</p>
+
+								<p>Yamahini ovlašteni trgovci i serviseri (popis je dostupan na&amp;nbsp;<a href="http://www.yamaha-motor.eu/hr/dealer-locator/index.aspx#/full/HR">poveznici</a> )</p>
+
+								<p/>
+
+								<ul><li>&amp;nbsp;Koju vrstu osobnih podataka prikupljamo?</li></ul>
+
+								<p>• Osnovne osobne podatke (npr. ime i prezime) i podatke za komunikaciju (npr. adresa, e-pošta, telefon)<br/>
+									• Dodatne osobne podatke (npr. pojedinosti o vozačkoj dozvoli)<br/>
+									• Podatke koji omogućuju stvaranje profila (npr. demografski podaci, podaci o zaposlenju, kontakti podaci.)<br/>
+									• Podatke koji se odnose na vozila i druge Yamahine proizvode i usluge, uključujući i servisne usluge<br/>
+									• Informacije o odabranim (preferiranim) načinima komunikacije</p>
+
+								<p>• Informacije o komunikaciji u vezi Yamaha proizvoda, uključujući marketinšku komunikaciju<br/>
+									• Informacije o financiranju, plaćanjima itd.<br/>
+									• Informacije nužne za ugovaranje police osiguranja (npr. prometne nesreće, provođenje jamstva i jamstvenih zahtjeva).</p>
+
+								<ul><li>Koje su pravne osnove za obradu vaših osobnih podataka?</li></ul>
+
+								<p>U skladu s važećim zakonodavstvom iz područja zaštite osobnih podataka vaše osobne podatke možemo obrađivati:</p>
+
+								<p>• ako ste nam dali suglasnost za to (koju možete u bilo kojem trenutku opozvati)<br/>
+									• ako je to potrebno kako bismo mogli sklopiti i/ili ispuniti ugovor s vama<br/>
+									• ako je obrada nužna zbog zakonskih interesa koje provodimo kao voditelj obrade osobnih podataka ili treća strana<br/>
+									• ako to zahtijeva zakon (na primjer, u vezi s podacima na izdanoj fakturi).</p>
+
+								<ul><li>Za koje svrhe obrađujemo vaše osobne podatke?</li></ul>
+
+								<p>Osobne podatke obrađujemo samo za određene, eksplicitne i legitimne svrhe i nećemo ih obrađivati ni na koji način koji nije u skladu s tim svrhama. Svrhe u koje prikupljamo osobne podatke su:</p>
+
+								<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; - odgovor na &amp;nbsp;Vaše upite,</p>
+
+								<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; - provođenje narudžbe koju ste nam dali i sklapanje ugovora</p>
+
+								<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; - unapređenje iskustva posjete neke od naših web-stranica ili portala,</p>
+
+								<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; - unapređenje proizvoda i usluga općenito, ponuda usluga ili aplikacija,</p>
+
+								<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; - marketinške kampanje s ciljem dostave podataka o poslovanju,</p>
+
+								<ul><li>Koliko dugo čuvamo vaše osobne podatke?</li></ul>
+
+								<p>Osobne podatke čuvamo onoliko dugo koliko je potrebno za namjene za koje se obrađuju ili za postupanje u skladu sa važećim propisima. Osobne podatke koje obrađujemo na temelju vaše osobne suglasnosti, pohranjujemo do vašeg opoziva. Osobne podatke koje obrađujemo na temelju zakona ili ugovornog odnosa s vama čuvamo sve dok to propisuje zakon (npr. 10 godina od izdavanja za izdane fakture), odnosno za vrijeme trajanja ugovora i još 5 godina nakon prestanka (koliko iznosi opći rok zastare).</p>
+
+								<p>Po isteku razdoblja čuvanja osobne podatke brišemo učinkovito i trajno ili ih anonimiziramo, tako da se više ne mogu povezati s određenim pojedincem.</p>
+
+								<ul><li>Na koji način štitimo vaše osobne podatke?</li></ul>
+
+								<p>Upotrebljavamo tehničke i organizacijske sigurnosne mjere kako bismo zaštitili vaše osobne podatke od ilegalnog ili neovlaštenog pristupa ili upotrebe, kao i od slučajnog gubitka ili gubitka dijela podataka. Oblikovali smo ih uzimajući u obzir svoju IT infrastrukturu, potencijalni utjecaj na vašu privatnost i troškove te u skladu s trenutnim industrijskim standardima i praksom.</p>
+
+								<p>Naši ugovorni suradnici koji se bave obradom podataka mogu obrađivati vaše osobne podatke samo uz pridržavanje navedenih tehničkih i organizacijskih sigurnosnih mjera.</p>
+
+								<p>Održavanje sigurnosti podataka znači zaštitu povjerljivosti, cjelovitosti i dostupnosti vaših osobnih podataka:<br/>
+									• povjerljivost i cjelovitost: vaši osobni podaci zaštićeni su od neovlaštene ili nezakonite obrade i od slučajnog gubitka, uništenja ili oštećenja<br/>
+									• dostupnost: osigurat ćemo da ovlaštene osobe za obradu podataka imaju pristup vašim osobnim podacima kada je to potrebno.<br/>
+									<br/>
+									Naši sigurnosni postupci uključuju: sigurnost pristupa, sigurnosne kopije, praćenje, pregled i održavanje, upravljanje sigurnosnim incidentima itd.</p>
+
+								<ul><li>Tko mogu biti primatelji Vaših osobnih podatka?</li></ul>
+
+								<p>Ovisno o namjenama za koje obrađujemo vaše osobne podatke, primatelje podataka možemo podijeliti u sljedeće kategorije:</p>
+
+								<p/>
+
+								<p>a) Naši poslovni partneri: od njih zahtijevamo da uvijek budu u skladu s primjenjivim zakonima, pravilima zaštite osobnih podataka i da posvećuju iznimnu pozornost povjerljivosti vaših osobnih podataka:</p>
+
+								<p>• članovi naše ovlaštene prodajne i servisne mreže s kojima ste bili u kontaktu</p>
+
+								<p>• agencije za oglašavanje, marketinške i PR agencije i pružatelji usluga ( Google, Facebook) za slanje e-pošte; samo identifikacijski podatak o kolačiću (cookie) za namjene remarketinga, adresa e-pošte za prikazivanje oglasa u programu Google AdWords; identifikacijski podatak o kolačiću za namjene analiziranja u programu Google Analytics; Facebook – samo identifikacijski podatak o kolačiću (cookie) za namjene remarketinga; adresa e-pošte za prikazivanje oglasa u programu Facebook Custom Audiences): koji nam pomažu provoditi i analizirati učinkovitost naših kampanja i promotivnih aktivnosti<br/>
+									• Yamahini pružatelji usluga: tvrtke koje pružaju usluge za Yamahu ili u ime tvrtke Yamaha (na primjer, vanjski pružatelji IT usluga, računovodstveni servisi, odvjetnička društva itd.)<br/>
+									b) Ostale treće strane:<br/>
+									• kada to zahtijeva zakon ili je zakonski potrebno radi zaštite interesa voditelj obrade ili ispitanika<br/>
+									• na zahtjev nadležnih tijela, na temelju sudske odluke, u slučaju pravnih postupaka, obveze izvješćivanja i informiranja nadležnih tijela itd.<br/>
+									• provjere ili kontrole sukladnosti s Yamahinim pravilima i ugovorima<br/>
+									• zaštita prava, imovine ili sigurnosti voditelja obrade i/ili Yamahe i/ili njenih klijenata<br/>
+									• u slučaju statusnih promjena, prijenosa poslovanja</p>
+
+								<p>Primatelji osobnih podataka ne smiju obrađivati osobne podatke osim za svrhe za koje su isti prikupljeni.</p>
+
+								<p/>
+
+								<ul><li>Koje su vaše mogućnosti i prava u vezi s dostavljenim osobnim podacima?</li></ul>
+
+								<p>Želimo biti što transparentniji pa vam stoga nudimo mogućnost odabira načina na koji želite da upotrebljavamo vaše osobne podatke.</p>
+
+								<p>• Vi birate,&amp;nbsp;kako želite da vam se obraćamo&amp;nbsp;– npr. kojim kanalima (na primjer, e-pošta, pošta, telefon...). Trudit ćemo se poštivati vaše želje, no imajte na umu da se sva komunikacija ne odvija na svim kanalima.<br/>
+									• Vaši&amp;nbsp;osobni podaci&amp;nbsp;– uvijek nam se možete obratiti na kontakt za zaštitu podataka (pogledajte Kome se mogu obratiti ako imam pitanja u vezi s mojim osobnim podacima?) kako biste saznali koje vaše osobne podatke imamo u bazi i iz kojih smo ih izvora dobili. Imate pravo na pristup svojim osobnim podacima kao i pravo na ispravak svojih osobnih podataka</p>
+
+								<p>Imate pravo na zaprimiti osobne podatke koje ste nam proslijedili, u najčešće upotrebljavanom strukturiranom strojno čitljivom obliku, kao i pravo prnijeti osobne podatke bilo kojoj trećoj strani po svom izboru.<br/>
+									&amp;nbsp;ako u osobnim podacima nađete pogrešku ili ako vam se čini da podaci nisu potpuni ili točni,</p>
+
+								<p>• Vaša&amp;nbsp;ograničenja&amp;nbsp;– možete zatražiti ograničenu obradu osobnih podataka (na primjer, dok se provjerava točnost vaših osobnih podataka)<br/>
+									• Vaši&amp;nbsp;prigovori&amp;nbsp;– također se možete usprotiviti upotrebi vaših osobnih podataka za svrhe izravnog marketinga i protiviti se samo automatskoj obradi, uključujući stvaranju profila.</p>
+
+								<p>Suglasnost za obradu osobnih podataka možete opozvati u bilo kojem trenutku tako da se obratite našoj osobi za kontakt zaduženoj za pitanja o zaštiti podataka (pogledajte Kome se mogu obratiti ako imam pitanja u vezi s mojim osobnim podacima?). Osim toga od nas možete zatražiti da izbrišemo bilo koje podatke o vama (osim u određenim slučajevima, na primjer, za potrebe dokazivanja transakcije ili ako je to potrebno prema zakonu). Također se imate pravo žaliti nadzornom tijelu.</p>
+
+								<ul><li>Kome se mogu obratiti ako imam pitanja u vezi s mojim osobnim podacima?</li></ul>
+
+								<p>Na raspolaganju vam je osoba za kontakt koja će se baviti vašim pitanjima ili zahtjevima u vezi s vašim osobnim podacima (i njihovom obradom) i ostvarivanjem vaših prava.Pišite nam na <a href="mailto:mailto:gdpr@yamaha-motor.hr">gdpr@yamaha-motor.hr</a></p>
+
+								<p>Radi pouzdane identifikacije u slučaju ostvarivanja prava u vezi s osobnim podacima možemo od vas zatražiti dodatne podatke, a djelovanje možemo samo odbiti ako se dokaže da vas ne možemo pouzdano identificirati.</p>
+
+								<ul><li>Kako mogu opozvati suglasnost?</li></ul>
+
+								<p>Suglasnost se može otkazati pisanom izjavom ili porukom koju nam možete poslati e-poštom na adresu&amp;nbsp;<a href="mailto:mailto:gdpr@yamaha-motor.hr">gdpr@yamaha-motor.hr</a>hr &amp;nbsp;ili poštom na adresu TM Zagreb d.o.o, Susedsko polje 53, 10000 Zagreb, Hrvatska</p>
+
+								<p>Odbijanje pristanka na obradu osobnih podataka ne nosi sa sobom negativne posljedice ili sankcije. Međutim, postoji mogućnost da u slučaju uskrate privole za obradu osobnih podataka nećemo moći pružiti korisniku pojedinačne ili više svojih usluga koje se ne mogu pružati bez upotrebe osobnih podataka (npr. testne vožnje ili prilagođena komunikacija).</p>
+
+								<ul><li>Zašto je korisna izrada profila za prilagođenu komunikaciju i informiranje?</li></ul>
+
+								<p>Određene informacije (kao što su, ali ne ograničavajući se na model i starost vozila) koriste se za procjenu ili ocjenu sadržaja koji bi vam mogao biti najzanimljiviji i najkorisniji. Na taj način želimo povećati mogućnosti da vas upoznamo s najrelevantnijim vozilima, proizvodima ili uslugama. U tu svrhu pojedinci se mogu svrstati u različite skupine (profile) s kojima komuniciramo drugačije, odnosno prilagođeno (individualizirano). To znači da različite skupine (profili) pojedinaca primaju marketinške poruke s različitim sadržajem, uključujući uvjete kupnje (npr. popusti ili uvjeti plaćanja). Pri razvrstavanju pojedinaca u grupe (profili) možemo pratiti, bilježiti i upotrebljavati i odgovore pojedinca na marketinške poruke, npr. otvaranje e-pošte, otvaranje poveznica, vrijeme koje pojedinac provede na određenom web-mjestu i sl.</p>
+
+								<div><hr width="33%" size="1" align="left"/></div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</t>
+	</template>
+
+	<template id="gdpr_legal" name="GDPR legal">
+		<t t-call="website.layout">
+			<div id="wrap">
+				<div class="oe_structure">
+					<section data-snippet-id="title">
+						<h1 class="text-center">Legalni savjet</h1>
+					</section>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 mb16 mt16">
+							<div>
+								<p>https://pp.yamaha-motor.hr - Internet stranica u vlasništvu društva TM Zagreb d.o.o., Susedsko polje 53, Zagreb, OIB 26503455503</p>
+							</div>
+							<div>
+								<p>
+									<t t-if="res_company.street">
+										<span t-field="res_company.street"/>
+										<br/>
+										<t t-if="res_company.city">
+											<span t-field="res_company.city"/>
+											<br/>
+										</t>
+										<t t-if="res_company.zip">
+											<span t-field="res_company.zip"/>
+										</t>
+										<t t-if="res_company.state_id">
+											<span t-field="res_company.state_id.name"/>
+											<br/>
+										</t>
+										<t t-if="res_company.country_id">
+											<span t-field="res_company.country_id.name"/>
+										</t>
+									</t>
+								</p>
+							</div>
+							<div>
+								<t t-if="res_company.vat">
+									<p>
+										VAT number: <span t-field="res_company.vat"/>
+									</p>
+								</t>
+							</div>
+							<div>
+								<t t-if="res_company.phone or res_company.email or res_company.fax">
+									<p>
+										You can contact us at:
+									</p>
+									<ul>
+										<t t-if="res_company.phone">
+											<li>Phone number: <span t-field="res_company.phone"/></li>
+										</t>
+										<t t-if="res_company.email">
+											<li>Email address:
+												<a t-attf-href="mailto:#{res_company.email}"><span t-field="res_company.email"/></a>
+											</li>
+										</t>
+										<t t-if="res_company.fax">
+											<li>Fax number: <span t-field="res_company.fax"/></li>
+										</t>
+									</ul>
+								</t>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="oe_structure"/>
+			</div>
+		</t>
+	</template>
+
+	<template id="gdpr_privacy_policy" name="GDPR privacy policy">
+			<t t-call="website.layout">
+				<div id="wrap">
+					<div class="oe_structure">
+						<section>
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12 mb16">
+										<h1 class="text-center">ZAŠTITA OSOBNIH PODATAKA</h1>
+										<h3 class="text-muted text-center">Čuvanje privatnosti osobnih podataka</h3>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="oe_structure"/>
+					<div class="oe_structure">
+						<section class="mt16 mb16">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12 mb16 mt16">
+										<h2><a href="https://pp.yamaha-motor.hr/gdpr/gdpr_data">GDPR</a><br/><br/>
+											Čuvanje privatnosti osobnih podataka</h2>
+										<p>Prodavatelj se obvezuje čuvati privatnost osobnih podataka svih registriranih Korisnika https://pp.yamaha-motor.hr stranica, te će s istima postupati u skladu sa Zakonom o zaštiti osobnih podataka, odnosno drugim primjenjivim propisima.</p>
+										<p>Prije pristupa određenim sadržajima za Korisnike je obvezna registracija koja uključuje dobrovoljno unošenje vlastitih osobnih podataka Korisnika. U slučaju pristanka na davanje osobnih podataka, smatrat će se da je Korisnik pristao na uvjete korištenja osobnih podataka predviđene ovim Općim uvjetima, a temeljem kojih se Prodavatelju daje pravo da prikuplja, koristi, obrađuje i prenosi osobne podatke potrebne za korištenje web stranica.</p>
+										<h2>Prikupljanje, obrada i korištenje osobnih podataka</h2>
+										<p>Korisnik prilikom registracije daje osobnu suglasnost za prikupljanje, korištenje, obradu i prenošenje svojih osobnih podataka potrebnih za korištenje web stranica, uključujući (ali bez ograničavanja na):<br/>
+											• suglasnost da Prodavatelj može sukladno odredbama Zakona o zaštiti osobnih podataka, obrađivati dane osobne podatke za potrebe vlastitih evidencija i statistike, za potrebe stvaranja baze podataka o kupcima, obavještavanja o proizvodima i uslugama, za potrebe informiranja o isporuci, za potrebe dostave promotivnih materijala, unaprjeđenje odnosa sa Kupcima te unapređenja usluga. Prodavatelj navedene podatke može davati trećima u svrhu izvršavanja usluge, zaštite interesa korisnika i Prodavatelja te sprječavanja eventualnih zloporaba;<br/>
+											• potrebe što boljeg uvida i razumijevanja pojedinačnih potreba i zahtjeva korisnika kao i razvijanja mogućnosti što kvalitetnijeg pružanja svih usluga Prodavatelja koji za rezultat imaju povećanje zadovoljstva korisnika;<br/>
+											• suglasnost da mu se Prodavatelj može obraćati pismenim putem, telefonski, SMS-om i/ili elektroničkom poštom, te mu na kućnu adresu dostavljati materijale kojima će ga obavještavati o pogodnostima i novinama u svojoj ponudi;<br/>
+											• davanje podataka trećim osobama potrebnim za izvršenje gore navedenih svrha</p>
+										<p>Prodavatelj će čuvati osobne podatke onoliko koliko je to potrebno za svrhe predviđene ovim Općim uvjetima. Nakon isteka tog vremena osobni podaci će se uništiti, izbrisati ili učiniti anonimnima na način koji osigurava da se zadrži sigurnost osobnih podataka.&amp;nbsp;</p>
+										<p>Prodavatelj neće razotkriti osobne podatke Korisnika trećim osobama, osim u svrhu izvršavanja usluge, zaštite interesa korisnika i Prodavatelja te sprječavanja eventualnih zloporaba.&amp;nbsp;</p>
+										<p>Prodavatelj će osigurati da se osobni podaci Korisnika drže na sigurnom mjestu (koje uključuje razumnu administrativnu, tehničku i fizičku zaštitu kako bi se onemogućilo neovlašteno korištenje, pristup, razotkrivanje, kopiranje ili izmjena osobnih podataka), kojem mogu pristupiti samo ovlaštene osobe Prodavatelja.&amp;nbsp;</p>
+										<p>Prodavatelj se obvezuje Korisnicima omogućiti pristup njihovim osobnim podacima koje posjeduje kako bi osigurao da su osobni podaci točni, potpuni i ažurirani.&amp;nbsp;</p>
+										<p>Ukoliko Korisnici zatraže korekciju ili brisanje njihovih osobnih podataka, Prodavatelj će takve podatke izmijeniti ili ukloniti. Odabirom brisanja osobnih podataka Korisnici pristaju na to da će im biti onemogućen pristup određenim sadržajima na web stranicama.&amp;nbsp;</p>
+										<p>Prilikom davanja osobnih podataka, Korisnici jamči da su isti potpuni, istiniti, točni i ažurni.</p>
+										<h2>Zaštita osobnih podataka i dostupnost trećim osobama</h2>
+										<p>Osobni podaci Korisnika štite se sukladno Zakonu o zaštiti osobnih podataka, te ih Prodavatelj neće ni na koji način učiniti dostupnim trećima. Potrebne osobne podatke prosljeđujemo isključivo poslovnim partnerima za realizaciju isporuke Vaše narudžbe ili za potrebe adresiranja tiskanih reklamnih materijala. Kupac ima pravo zatražiti ispravak, izmjenu ili nadopunu netočnih, nepotpunih ili neažuriranih podataka te se za sva pitanja u svezi zaštite osobnih podataka može obratiti voditelju zbirke osobnih podataka.</p>
+										<p>Prodavatelj ne bilježi niti ne pohranjuje transakcijske podatke Korisnika potrebne za plaćanje putem kartica. Prodavatelj za naplatu kreditnih kartica koristi usluge treće strane,koja enkripcijom štiti vaše podatke.</p>
+										<h2>Stavljanje podataka korisnika na raspolaganje trećim osobama</h2>
+										<p>Prodavatelj jamči da e-mail adresu i ostale podatke Korisnika neće stavljati trećim pravnim i fizičkim osobama na raspolaganje bez njegovog pristanka. Od navedenog se izuzima uvid od strane ovlaštenih službi izvršne vlasti Republike Hrvatske, za potrebe istražnih radnji temeljem valjanog sudskog naloga, u svrhu izvršavanja usluge, zaštite interesa korisnika i Prodavatelja te sprječavanja eventualnih zloporaba</p>
+										<h2>Otklanjanje pogrešaka</h2>
+										<p>Prodavatelj ne odgovara za slučajnu pogrešku ili pogrešku zbog više sile ili drugih objektivnih okolnosti kojima se uzrokuje slučajno kršenje zajamčene zaštite podataka Korisnika, ali jamči da će pogreška biti otklonjena, ukoliko je to moguće, čim prije.</p>
+										<h2>Prijava pogrešaka</h2>
+										<p>Prodavatelj ne može garantirati da će podaci na Internet stranici biti bez pogrešaka. Ukoliko dođe do pogreške, molimo Vas da je prijavite našim djelatnicima, kako bismo je otklonili na najbrži mogući način. Također ukoliko Prodavatelj dobrom namjerom smatra da je pronađena greška ispravna, istu može izbrisati ili promijeniti.</p>
+										<h1>Cookie</h1>
+										<h2>Što je kolačić (cookie)?&amp;nbsp;</h2>
+										<p>Kolačić je informacija spremljena na osobno računalo u trenutku pregledavanja internetske stranice koju ste posjetili. Kolačići omogućuju jednostavnije korištenje budući da spremaju Vaše postavke za internetsku stranicu (jezik ili adresa) te ih pri ponovnom pokretanju iste iznova aktiviraju. Na taj način informacije su prilagođene Vašim potrebama i uobičajenim načinima korištenja.&amp;nbsp;</p>
+										<p>Od jednostavnih informacija o postavkama, kolačići mogu spremiti i velik broj osobnih informacija (ime, e-mail adresa) za koje Vi u potpunosti morate dati pristup. Ukoliko im Vi to niste omogućili, utoliko kolačići ne mogu pristupiti datotekama na Vašem računalu. Aktivnosti spremanja i slanja kolačića Vama nisu vidljive, međutim možete u postavkama izabranog internetskog preglednika odabrati mogućnost odobravanja/odbijanja zahtjeva za spremanje kolačića, brisanje spremljenih kolačića i druge aktivnosti vezane uz korištenje kolačića.&amp;nbsp;</p>
+										<h2>Kako onemogućiti kolačiće ?&amp;nbsp;</h2>
+										<p>&amp;nbsp;Isključivanjem kolačića ne dopuštate pohranjivanje istih na vlastitom računalu. Postavke kolačića mogu se konfigurirati i mijenjati u izabranom internetskom pregledniku. Kako biste vidjeli postavke, odaberite preglednik koji koristite (Chrome, Firefox, Internet Explorer 9, Internet Explorer 7 i 8 te Operu ili Safari (stranice na engleskom jeziku)). Ukoliko onemogućite kolačiće, utoliko nećete biti u mogućnosti koristiti određene funkcionalnosti internetskih stranica.&amp;nbsp;</p>
+										<h2>Što su privremeni kolačići?&amp;nbsp;</h2>
+										<p>Privremeni kolačići, ili kolačići sesije, uklanjanju se s vašeg osobnog računala u trenutku zatvaranja internetskog preglednika u kojem ste pregledavali internetsku stranicu. Uz pomoć ovih kolačića, stranice pohranjuju privremene podatke.&amp;nbsp;</p>
+										<h2>Što su stalni kolačići?&amp;nbsp;</h2>
+										<p>Stalni, ili spremljeni, kolačići ostaju na Vašem osobnom računalu i nakon zatvaranja internetskog preglednika. Uz pomoć ovih kolačića internetske stranice pohranjuju podatke kako bi Vam se olakšalo korištenje. Primjerice, internetske stranice koje zahtijevaju unos korisničkog imena i lozinke ''zapamtit'' će vaš unos koji će se pojavljivati pri svakom novom posjetu istim. Stalni kolačići ostat će zabilježeni na računalu danima, mjesecima ili godinama.&amp;nbsp;</p>
+										<h2>Što su kolačići od prve strane?&amp;nbsp;</h2>
+										<p>Kolačići od prve strane dolaze s internetske stranice koju pregledavate, a mogu biti privremeni ili stalni. Na taj način, internetske stranice pohranjuju podatke koji će Vam olakšati korištenje pri svakom novom posjetu toj internetskoj stranici.&amp;nbsp;</p>
+										<h2>Što su kolačići treće strane?&amp;nbsp;</h2>
+										<p>Kolačići treće strane na Vaše računalo dolaze s drugih web mjesta koje se nalaze na internetskoj stranici koju pregledavate. Riječ je o primjerice pop-up oglasima, a kolačići tu imaju ulogu praćenja internetskih stranica u oglašivačke svrhe.&amp;nbsp;</p>
+										<h2>Koristi li https://pp.yamaha-motor.hr kolačiće?&amp;nbsp;</h2>
+										<p>Da, ova internetska stranica koristi kolačiće kako bi Vam osigurala jednostavnije i bolje korisničko iskustvo.&amp;nbsp;</p>
+										<h2>Kakve kolačiće koristi https://pp.yamaha-motor.hr?&amp;nbsp;</h2>
+										<p>&amp;nbsp;Privremene kolačiće (Session cookies) – riječ je o kolačićima koji će se automatski izbrisati prilikom zatvaranja internetskog preglednika u kojem radite Stalne kolačiće (Persistent cookies) – riječ je o kolačićima koji će ostati ''zabilježeni'' u vašem internetskom pregledniku dok ne isteknu ili ih sami ručno ne izbrišete. Prikupljene informacije su anonimne, a ne uključuju vaše privatne podatke</p>
+										<h2>Ima li na web stranici kolačića treće strane?&amp;nbsp;</h2>
+										<p>Postoji nekoliko vanjskih servisa koji Vam spremaju ograničene kolačiće, a isti nije postavila ova internetska stranica. Limitirani kolačići služe za nesmetano korištenje mogućnosti koje korisnicima osiguravaju jednostavan pristup sadržaju.&amp;nbsp;</p>
+										<p>Dodatne informacije oko isključivanja kolačića</p>
+										<p>Postoji nekoliko internetskih stranica za isključivanje pohranjivanja kolačića za različite servise. Više informacija pročitajte na sljedećim linkovima:&amp;nbsp;<br/>
+											http://www.allaboutcookies.org/<br/>
+											http://www.youronlinechoices.eu/&amp;nbsp;</p>
+										<h2>IZMJENE OPĆIH UVJETA I OSTALE ODREDBE</h2>
+										<p>Pravo na izmjene Općih uvjeta</p>
+										<p>Prodavatelj zadržava pravo izmijeniti ove Opće uvjete bez prethodne najave. Korisnici su dužni prilikom svakog korištenja Internet stranice, te posebno usluge Internet trgovine provjeriti važeće Opće uvjete.</p>
+										<p>Važenje Općih uvjeta</p>
+										<p>Za online kupovinu važeći su Opći uvjeti na snazi u trenutku narudžbe proizvoda</p>
+										<p>Rješavanje sporova</p>
+										<p>Svi sporovi koji mogu nastati temeljem ovih Općih uvjeta rješavat će se pred nadležnim sudom u Zagrebu</p>
+										<p>Kopiranje</p>
+										<p>Dokumenti objavljeni na ovoj web stranici smiju se kopirati samo u nekomercijalne svrhe i samo za individualnu upotrebu, te uz poštivanje svih autorskih prava, drugih vlasničkih prava i svakog navedenog ograničenja prava.</p>
+										<p/>
+										<h2>Internet stranice trećih osoba</h2>
+										<h2>Čuvanje privatnosti osobnih podataka</h2>
+										<p>Prodavatelj se obvezuje čuvati privatnost osobnih podataka svih registriranih Korisnika https://pp.yamaha-motor.hr stranica, te će s istima postupati u skladu sa Zakonom o zaštiti osobnih podataka, odnosno drugim primjenjivim propisima.</p>
+										<p>Prije pristupa određenim sadržajima za Korisnike je obvezna registracija koja uključuje dobrovoljno unošenje vlastitih osobnih podataka Korisnika. U slučaju pristanka na davanje osobnih podataka, smatrat će se da je Korisnik pristao na uvjete korištenja osobnih podataka predviđene ovim Općim uvjetima, a temeljem kojih se Prodavatelju daje pravo da prikuplja, koristi, obrađuje i prenosi osobne podatke potrebne za korištenje web stranica.</p>
+										<h2>Prikupljanje, obrada i korištenje osobnih podataka</h2>
+										<p>Korisnik prilikom registracije prihvaća Opće uvjete te daje osobnu suglasnost za prikupljanje, korištenje, obradu i prenošenje svojih osobnih podataka potrebnih za korištenje web stranica, uključujući (ali bez ograničavanja na):<br/>
+											• suglasnost da Prodavatelj može sukladno odredbama Zakona o zaštiti osobnih podataka, obrađivati dane osobne podatke za potrebe vlastitih evidencija i statistike, za potrebe stvaranja baze podataka o kupcima, obavještavanja o proizvodima i uslugama, za potrebe informiranja o isporuci, za potrebe dostave promotivnih materijala, unaprjeđenje odnosa sa Kupcima te unapređenja usluga. Prodavatelj navedene podatke može davati trećima u svrhu izvršavanja usluge, zaštite interesa korisnika i Prodavatelja te sprječavanja eventualnih zloporaba;<br/>
+											• potrebe što boljeg uvida i razumijevanja pojedinačnih potreba i zahtjeva korisnika kao i razvijanja mogućnosti što kvalitetnijeg pružanja svih usluga Prodavatelja koji za rezultat imaju povećanje zadovoljstva korisnika;<br/>
+											• suglasnost da mu se Prodavatelj može obraćati pismenim putem, telefonski, SMS-om i/ili elektroničkom poštom, te mu na kućnu adresu dostavljati materijale kojima će ga obavještavati o pogodnostima i novinama u svojoj ponudi;<br/>
+											• davanje podataka trećim osobama potrebnim za izvršenje gore navedenih svrha</p>
+										<p>Prodavatelj će čuvati osobne podatke onoliko koliko je to potrebno za svrhe predviđene ovim Općim uvjetima. Nakon isteka tog vremena osobni podaci će se uništiti, izbrisati ili učiniti anonimnima na način koji osigurava da se zadrži sigurnost osobnih podataka.&amp;nbsp;</p>
+										<p>Prodavatelj neće razotkriti osobne podatke Korisnika trećim osobama, osim u svrhu izvršavanja usluge, zaštite interesa korisnika i Prodavatelja te sprječavanja eventualnih zloporaba.&amp;nbsp;</p>
+										<p>Prodavatelj će osigurati da se osobni podaci Korisnika drže na sigurnom mjestu (koje uključuje razumnu administrativnu, tehničku i fizičku zaštitu kako bi se onemogućilo neovlašteno korištenje, pristup, razotkrivanje, kopiranje ili izmjena osobnih podataka), kojem mogu pristupiti samo ovlaštene osobe Prodavatelja.&amp;nbsp;</p>
+										<p>Prodavatelj se obvezuje Korisnicima omogućiti pristup njihovim osobnim podacima koje posjeduje kako bi osigurao da su osobni podaci točni, potpuni i ažurirani.&amp;nbsp;</p>
+										<p>Ukoliko Korisnici zatraže korekciju ili brisanje njihovih osobnih podataka, Prodavatelj će takve podatke izmijeniti ili ukloniti. Odabirom brisanja osobnih podataka Korisnici pristaju na to da će im biti onemogućen pristup određenim sadržajima na web stranicama.&amp;nbsp;</p>
+										<p>Prilikom davanja osobnih podataka, Korisnici jamči da su isti potpuni, istiniti, točni i ažurni.</p>
+										<h2/>
+										<h2>
+											<span style="line-height: 1.42857;">SIGURNOST ONLINE KUPOVINE</span>
+										</h2>
+										<p>Mnogi korisnici interneta još uvijek se ne osjećaju sigurno prilikom online kupovine. Zato ovim putem želimo istaknuti zašto se razlikujemo od ostalih te na koji način koristimo podatke koje prikupljamo:</p>
+										<p>Nema zlouporabe podatka</p>
+										<p>Podatke u registracijskom ili bilo kojem drugom obrascu na stranicama https://pp.yamaha-motor.hr obvezujemo se koristiti isključivo u poslovne svrhe te u svrhu poboljšanja vašeg korisničkog iskustva. Više o čuvanju privatnosti osobnih podataka možete pročitati na stranici 'Pravila privatnosti'</p>
+										<h2>Zakon Republike Hrvatske o zaštiti potrošača</h2>
+										<p>Stranicama https://pp.yamaha-motor.hr djeluje sukladno Zakonu o zaštiti potrošača, zakonu Republike Hrvatske kojim se štite osnovna prava potrošača pri kupnji proizvoda i usluga, kao i pri drugim oblicima stjecanja proizvoda i usluga na tržištu: pravo na zaštitu ekonomskih interesa, pravo na zaštitu od opasnosti za život, zdravlje i imovinu, pravo na pravnu zaštitu potrošača, pravo na informiranje i izobrazbu potrošača, pravo na udruživanje potrošača u svrhu zaštite njihovih interesa te pravo na predstavljanje potrošača i sudjelovanje predstavnika potrošača u radu tijela koja rješavaju pitanja od njihova interesa.&amp;nbsp;</p>
+										<p/>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="oe_structure"/>
+					<div class="oe_structure"/>
+					<div class="oe_structure"/>
+					<div class="oe_structure"/>
+					<div class="oe_structure">
+						<section class="s_text_block">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12 mb16 mt16">
+										<h2>Kontaktirajte nas</h2>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 mb16 mt16">
+										<p>
+											If you have any questions about these Terms, please contact us.
+										</p>
+										<p>
+											<t t-if="res_company.street">
+												<span t-field="res_company.street"/>
+												<br/>
+												<t t-if="res_company.city">
+													<span t-field="res_company.city"/>
+													<br/>
+												</t>
+												<t t-if="res_company.zip">
+													<span t-field="res_company.zip"/>
+												</t>
+												<t t-if="res_company.state_id">
+													<span t-field="res_company.state_id.name"/>
+													<br/>
+												</t>
+												<t t-if="res_company.country_id">
+													<span t-field="res_company.country_id.name"/>
+												</t>
+											</t>
+										</p>
+										<div>
+											<t t-if="res_company.phone or res_company.email or res_company.fax">
+												<ul>
+													<t t-if="res_company.phone">
+														<li>Phone number: <span t-field="res_company.phone"/></li>
+													</t>
+													<t t-if="res_company.email">
+														<li>Email address:
+															<a t-attf-href="mailto:#{res_company.email}"><span t-field="res_company.email"/></a>
+														</li>
+													</t>
+													<t t-if="res_company.fax">
+														<li>Fax number: <span t-field="res_company.fax"/></li>
+													</t>
+												</ul>
+											</t>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</t>
+	</template>
+
+
+</odoo>
+
+
+
+

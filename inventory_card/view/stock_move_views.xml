@@ -22,13 +22,18 @@
 		    <field name="date_expected" position="attributes">
 			    <attribute name="invisible">True</attribute>
 		    </field>
+		    <field name="origin" position="attributes">
+			    <attribute name="invisible">True</attribute>
+		    </field>
 
 		    <field name="picking_id" position="before">
 			    <field name="date_out"/>
 			    <field name="invoice_number"/>
 			    <field name="invoice_date"/>
-			    <field name="amount"/>
+			    <field name="amount_out"/>
+			    <field name="amount_in"/>
 			    <field name="company_currency_id" invisible="1"/>
+			    <field name="partner_ic"/>
 		    </field>
 
 	    </field>

@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+       <record model="ir.ui.view" id="pos_config_duplicate_receipt">
+            <field name="name">pos.config.duplicate.receipt</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="//div[@id='company']" position="after">-->
+                    <field name="active" position="after">
+	                    <group>
+	                        <field name="pos_auto_invoice"/>
+	                        <field name="pos_auto_customer_guest"/>
+	                        <field name="pos_auto_customer_guest_id"/>
+		                    <field name="pos_auto_payment_cash"/>
+		                    <field name="pos_auto_payment_cash_id"/>
+	                        <field name="receipt_invoice_number"/>
+	                        <field name="receipt_customer_vat"/>
+	                        <field name="receipt_zoi"/>
+	                        <field name="receipt_eor"/>
+	                        <field name="receipt_fiscal_number"/>
+	                        <field name="receipt_qrcode"/>
+	                        <field name="receipt_company_logo"/>
+	                    </group>
+                    </field>
+                <!--</xpath>-->
+            </field>
+        </record>
+
+    </data>
+</odoo>

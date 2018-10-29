@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<template id="report_get_my_data">
+				<t t-call="report.html_container">
+					<t t-call="report.external_layout">
+						<t t-foreach="docs" t-as="doc">
+							<div class="page">
+								<style>
+									td.inner {border: 1px solid Blue;
+											  padding: 7px;}
+
+								</style>
+
+								<center><h2>Podaci o korisniku</h2></center>
+								<center><h2><t t-esc="doc.name"/></h2></center>
+								<div>
+									<br> </br>
+									<br> </br>
+									<br> </br>
+									<center>
+										<table>
+											<tr>
+												<td class="inner">NAZIV KORISNIKA:</td>
+												<td class="inner"><b><t t-esc="doc.name"/></b></td>
+											</tr>
+											<tr>
+												<td class="inner">ADRESA KORISNIKA:</td>
+												<td class="inner">
+													<b><t t-esc="doc.street"/>,
+													<t t-esc="doc.zip"/> <t t-esc="doc.city"/></b>
+												</td>
+											</tr>
+											<tr>
+												<td class="inner">OIB:</td>
+												<td class="inner"><b><t t-esc="doc.vat"/></b></td>
+											</tr>
+											<tr>
+												<td class="inner">TELEFON:</td>
+												<td class="inner"><b><t t-esc="doc.phone"/></b></td>
+											</tr>
+											<tr>
+												<td class="inner">EMAIL:</td>
+												<td class="inner"><b><t t-esc="doc.email"/></b></td>
+											</tr>
+										</table>
+										<br> </br>
+										<br> </br>
+										<br> </br>
+										<br> </br>
+										<br> </br>
+										<br> </br>
+									</center>
+
+								</div>
+
+
+							</div>
+						</t>
+					</t>
+				</t>
+		</template>
+	</data>
+</odoo>

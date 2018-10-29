@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+		<report
+		    id="get_my_data_gdpr"
+		    string="Moji podaci"
+		    model="res.partner"
+		    report_type="qweb-pdf"
+		    file="web_gdpr.report_get_my_data"
+		    name="web_gdpr.report_get_my_data"
+		/>
+    </data>
+</odoo>
