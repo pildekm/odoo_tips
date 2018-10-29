@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_import_picking_invoice" model="ir.ui.view">
+			<field name="name">picking_invoice_import.form</field>
+			<field name="model">picking.invoice.import</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Import csv">
+				<label string="Upload invoice" colspan="4"/>
+					<group colspan="4" col="4">
+						<field name="name" />
+						<field name="invoice_type"/>
+						<field name="delimeter" invisible="True"/>
+						<field name="data" filename="name"  colspan="4" />
+					</group>
+				   <separator string="" colspan="4"/>
+				   <footer>
+						<button class="oe_highlight" special="cancel" string="Cancel"/>
+						<button string="Import picking invoice"  name="import_picking_invoice" type="object" class="oe_highlight"/>
+				   </footer>
+			   </form>
+			</field>
+		</record>
+
+		<record id="action_import_picking_invoice" model="ir.actions.act_window">
+			<field name="name">Import Picking invoice</field>
+			<field name="res_model">picking.invoice.import</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		   <field name="view_id" ref="view_import_picking_invoice"/>
+		   <field name="target">new</field>
+		</record>
+
+
+
+
+		<menuitem id="picking_invoice_import" name="Picking Invoice Import" parent="menu_picking_operations" sequence="2" action="action_import_picking_invoice"/>
+		<!--Purchases menu-->
+
+		<menuitem id="menu_picking_purchase" name="Picking" parent="purchase.menu_purchase_root" sequence="9" />
+
+        <menuitem id="picking_invoice_purchase" name="Picking Invoice" parent="menu_picking_purchase" sequence="2" action="action_picking_invoice" />
+
+		<menuitem id="inventory_picking_invoice_import" name="Picking Invoice Import" parent="menu_picking_purchase" sequence="2" action="action_import_picking_invoice"/>
+
+
+	</data>
+</openerp>

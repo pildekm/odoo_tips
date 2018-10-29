@@ -1,0 +1,289 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_picking_checking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-21 07:51+0000\n"
+"PO-Revision-Date: 2017-11-21 07:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_line_form
+msgid "About"
+msgstr "About"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_purchase_order_line_accessories_rel
+msgid "Accessories"
+msgstr "Accessories"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_purchase_order_accessories_ref
+msgid "Accessories ref"
+msgstr "Accessories ref"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_line_form
+msgid "Background"
+msgstr "Background"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_checking_validation_view
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: stock_picking_checking
+#: model:ir.actions.act_window,name:stock_picking_checking.checking_picking_filter_action1
+#: model:ir.ui.menu,name:stock_picking_checking.checking_filter_id
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_kanban
+msgid "Checking"
+msgstr "Checking"
+
+#. module: stock_picking_checking
+#: model:ir.actions.act_window,help:stock_picking_checking.checking_picking_filter_action1
+msgid "Checking delivered goods"
+msgstr "Checking delivered goods"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_checking_validation_view
+msgid "Checking validation"
+msgstr "Checking validation"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking_checking.py:40
+#, python-format
+msgid "Checking validation?"
+msgstr "Checking validation?"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking.py:57
+#, python-format
+msgid "Could not reserve all requested products. Please use the 'Mark as Todo' button to handle the reservation manually."
+msgstr "Could not reserve all requested products. Please use the 'Mark as Todo' button to handle the reservation manually."
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_checking_validation_create_uid
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_create_uid
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_line_create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_checking_validation_create_date
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_create_date
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_line_create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_move_move_dest_partner
+msgid "Customer"
+msgstr "Customer"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_search
+msgid "Group by"
+msgstr "Group by"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_purchase_order_line_ixs_rel
+msgid "IXS"
+msgstr "IXS"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_purchase_order_ixs_ref
+msgid "IXS ref"
+msgstr "IXS ref"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking_checking.py:28
+#: code:addons/stock_picking_checking/models/stock_picking_checking.py:63
+#, python-format
+msgid "Imamo višek izdelkov."
+msgstr "Imamo višek izdelkov."
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking_checking.py:20
+#, python-format
+msgid "Imamo višek izdelkov. [%s x %s]"
+msgstr "Imamo višek izdelkov. [%s x %s]"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_checking_validation_write_uid
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_line_write_uid
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_checking_validation_write_date
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_line_write_date
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.view_picking_form_inherit
+msgid "Make available"
+msgstr "Make available"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking_checking.py:28
+#: code:addons/stock_picking_checking/models/stock_picking_checking.py:63
+#, python-format
+msgid "Napaka"
+msgstr "Napaka"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking.py:38
+#, python-format
+msgid "No negative quantities allowed"
+msgstr "No negative quantities allowed"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_checking_line_pack_id
+msgid "Pack id"
+msgstr "Pack id"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_purchase_order_line_parts_rel
+msgid "Part"
+msgstr "Part"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_purchase_order_parts_ref
+msgid "Part ref"
+msgstr "Part ref"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_search
+msgid "Partner"
+msgstr "Partner"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/purchase.py:27
+#, python-format
+msgid "Parts ref already exists '%s' in ids = '%s'."
+msgstr "Parts ref already exists '%s' in ids = '%s'."
+
+#. module: stock_picking_checking
+#: sql_constraint:purchase.order:0
+msgid "Parts ref already exists!"
+msgstr "Parts ref already exists!"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking.py:20
+#, python-format
+msgid "Please create some Initial Demand or Mark as Todo and create some Operations. "
+msgstr "Please create some Initial Demand or Mark as Todo and create some Operations. "
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_line_form
+msgid "Product"
+msgstr "Product"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_purchase_order
+msgid "Purchase Order"
+msgstr "Purchase Order"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Purchase Order Line"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_purchase_order_line_ref_number
+msgid "Reference number"
+msgstr "Reference number"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking.py:29
+#, python-format
+msgid "Some products require lots/serial numbers, so you need to specify those first!"
+msgstr "Some products require lots/serial numbers, so you need to specify those first!"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_form
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_line_form
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_line_tree
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_tree
+msgid "Stock Checking"
+msgstr "Stock Checking"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_stock_move
+msgid "Stock Move"
+msgstr "Stock Move"
+
+#. module: stock_picking_checking
+#: model:ir.model.fields,field_description:stock_picking_checking.field_stock_picking_move_lines_in
+msgid "Stock Moves"
+msgstr "Stock Moves"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_form
+msgid "Stock checking line"
+msgstr "Stock checking line"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_stock_checking_validation
+msgid "Stock checking validation"
+msgstr "Stock checking validation"
+
+#. module: stock_picking_checking
+#: code:addons/stock_picking_checking/models/stock_picking.py:17
+#, python-format
+msgid "The pick is already validated"
+msgstr "The pick is already validated"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_stock_picking_type
+msgid "The picking type determines the picking view"
+msgstr "The picking type determines the picking view"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_stock_picking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_form
+msgid "Transfer"
+msgstr "Transfer"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_picking_checking_form
+msgid "Validate"
+msgstr "Validate"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_checking_validation_view
+msgid "Validiraj. <br/>\n"
+"	                    1. V primeru da je Done 0 opcija vlaidiraj bo sama končala pakiranje<br/>\n"
+"	                    2. Sami lahko skeniramo ali vnesemo število izdelkov v Done<br/>\n"
+"	                    3. V primeru da ni vseh izdelkov oziroma ToDo in Done se ne ujemata se ustvari backorder<br/>"
+msgstr "Validiraj. <br/>\n"
+"	                    1. V primeru da je Done 0 opcija vlaidiraj bo sama končala pakiranje<br/>\n"
+"	                    2. Sami lahko skeniramo ali vnesemo število izdelkov v Done<br/>\n"
+"	                    3. V primeru da ni vseh izdelkov oziroma ToDo in Done se ne ujemata se ustvari backorder<br/>"
+
+#. module: stock_picking_checking
+#: model:ir.ui.view,arch_db:stock_picking_checking.stock_checking_validation_view
+msgid "_Apply"
+msgstr "_Apply"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_stock_picking_checking
+msgid "stock.picking.checking"
+msgstr "stock.picking.checking"
+
+#. module: stock_picking_checking
+#: model:ir.model,name:stock_picking_checking.model_stock_picking_checking_line
+msgid "stock.picking.checking.line"
+msgstr "stock.picking.checking.line"
+

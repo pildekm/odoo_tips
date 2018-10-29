@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="picking_invoice_validation_view" model="ir.ui.view">
+        <field name="name">picking.invoice.validation.view.form</field>
+        <field name="model">picking.invoice.validation</field>
+        <field name="arch" type="xml">
+            <form string="Checking validation">
+                <group>
+                    <p>
+	                    Validiraj. <br/>
+	                    1. V primeru da je Done 0 opcija vlaidiraj bo sama končala pakiranje<br/>
+	                    2. Sami lahko skeniramo ali vnesemo število izdelkov v Done<br/>
+	                    3. V primeru da ni vseh izdelkov oziroma ToDo in Done se ne ujemata se ustvari backorder<br/>
+                    </p>
+                </group>
+                <footer>
+                    <button name="transfer" string="_Apply" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

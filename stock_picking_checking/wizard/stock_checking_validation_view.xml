@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="stock_checking_validation_view" model="ir.ui.view">
+        <field name="name">stock.checking.validation.view.form</field>
+        <field name="model">stock.checking.validation</field>
+        <field name="arch" type="xml">
+            <form string="Checking validation">
+                <group>
+                    <p>
+	                    Potrdi. <br/>
+	                    1. Sami lahko skeniramo ali vnesemo število izdelkov v Done<br/>
+	                    2. V primeru da ni vseh izdelkov oziroma ToDo in Done se ne ujemata se ustvari backorder<br/>
+                    </p>
+                </group>
+                <footer>
+                    <button name="transfer" string="_Apply" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
